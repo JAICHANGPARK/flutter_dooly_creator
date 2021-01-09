@@ -11,9 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '둘리 짤 생성기',
       darkTheme: ThemeData.dark(),
-      theme: ThemeData.light().copyWith(
-        primaryColor: Colors.red
-      ),
+      theme: ThemeData.light().copyWith(primaryColor: Colors.red),
       home: MyHomePage(title: '둘리 짤 생성기'),
     );
   }
@@ -29,14 +27,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   TextEditingController _textEditingController = TextEditingController(text: "");
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
     });
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -71,13 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Positioned(
                   child: Container(
-                    child: TextField(
-                      controller: _textEditingController,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        
-                      ),
-                    ),
+                    child: Text(_textEditingController.text),
                   ),
                   height: 32,
                   width: 110,
@@ -86,13 +77,32 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               ],
             ),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text("도우너:"),
+                    flex: 2,
+                  ),
+                  Expanded(
+                    flex: 10,
+                    child: TextField(
+                      controller: _textEditingController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+
+                      ),
+                      onChanged: (value){
+                        setState(() {
+                          _textEditingController.text = value;
+                        });
+                      },
+                    ),
+                  )
+                ],
+              ),
+            )
           ],
         ),
       ),
