@@ -32,6 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _firstText = "";
   String _secondText = "";
   double _fontSize = 14.0;
+  double _doolyFontSize = 14.0;
 
   void _incrementCounter() {
     setState(() {});
@@ -104,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Text(
                           _secondText,
                           style: TextStyle(
-                            fontSize: _fontSize,
+                            fontSize: _doolyFontSize,
                           ),
                         ),
                       ),
@@ -116,6 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
+
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -154,6 +156,53 @@ class _MyHomePageState extends State<MyHomePage> {
                           });
                         },
                       ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "글자크기",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    Spacer(),
+                    ButtonBar(
+                      buttonPadding: EdgeInsets.symmetric(horizontal: 8),
+                      children: [
+                        OutlinedButton(
+                            onPressed: () {
+                              setState(() {
+                                _fontSize = 14.0;
+                              });
+                            },
+                            child: Text(
+                              "초기화",
+                              style: TextStyle(fontSize: 18),
+                            )),
+                        OutlinedButton(
+                            onPressed: () {
+                              setState(() {
+                                _fontSize -= 1.0;
+                              });
+                            },
+                            child: Text(
+                              "작게",
+                              style: TextStyle(fontSize: 18),
+                            )),
+                        OutlinedButton(
+                            onPressed: () {
+                              setState(() {
+                                _fontSize += 1.0;
+                              });
+                            },
+                            child: Text(
+                              "크게",
+                              style: TextStyle(fontSize: 18),
+                            )),
+                      ],
                     )
                   ],
                 ),
@@ -206,7 +255,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     Text(
                       "글자크기",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                     Spacer(),
                     ButtonBar(
@@ -215,38 +264,39 @@ class _MyHomePageState extends State<MyHomePage> {
                         OutlinedButton(
                             onPressed: () {
                               setState(() {
-                                _fontSize = 14.0;
+                                _doolyFontSize = 14.0;
                               });
                             },
                             child: Text(
                               "초기화",
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: 18),
                             )),
                         OutlinedButton(
                             onPressed: () {
                               setState(() {
-                                _fontSize -= 1.0;
+                                _doolyFontSize -= 1.0;
                               });
                             },
                             child: Text(
                               "작게",
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: 18),
                             )),
                         OutlinedButton(
                             onPressed: () {
                               setState(() {
-                                _fontSize += 1.0;
+                                _doolyFontSize += 1.0;
                               });
                             },
                             child: Text(
                               "크게",
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: 18),
                             )),
                       ],
                     )
                   ],
                 ),
-              )
+              ),
+
             ],
           ),
         ),
@@ -265,18 +315,16 @@ class _MyHomePageState extends State<MyHomePage> {
                         _text2EditingController.clear();
                         _textEditingController.clear();
                         _fontSize = 14.0;
+                        _doolyFontSize = 14.0;
                         _secondText = "";
                         _firstText = "";
                       });
                     },
-
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
-                        "초기화",
-                        style: TextStyle(
-                          fontSize: 18
-                        ),
+                        "전체 초기화",
+                        style: TextStyle(fontSize: 18),
                       ),
                     ),
                   ),
