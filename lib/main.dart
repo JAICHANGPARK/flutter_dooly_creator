@@ -46,7 +46,21 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset("assets/img/welcome.png"),
+            Stack(
+              children: [
+                Image.asset("assets/img/welcome.png"),
+                Positioned(child: Container(
+                color: Colors.redAccent,
+                ),
+                height: 32,
+                width: 110,
+                left: 64,
+                  top: 32,
+                )
+
+              ],
+            ),
+
             Text(
               'You have pushed the button this many times:',
             ),
