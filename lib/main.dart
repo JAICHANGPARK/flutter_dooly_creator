@@ -28,15 +28,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _textEditingController = TextEditingController(text: "");
+  TextEditingController _text2EditingController = TextEditingController(text: "");
+  String _firstText = "";
+  String _secondText = "";
+  
 
   void _incrementCounter() {
-    setState(() {
-    });
+    setState(() {});
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
+    _text2EditingController.dispose();
     _textEditingController.dispose();
     super.dispose();
   }
@@ -56,28 +60,49 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Stack(
-              children: [
-                Image.asset("assets/img/welcome.png"),
-                Positioned(
-                  child: Container(
-                    color: Colors.white,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Stack(
+                children: [
+                  Image.asset("assets/img/welcome.png"),
+                  Positioned(
+                    child: Container(
+                      color: Colors.white,
+                    ),
+                    height: 32,
+                    width: 110,
+                    left: 64,
+                    top: 32,
                   ),
-                  height: 32,
-                  width: 110,
-                  left: 64,
-                  top: 32,
-                ),
-                Positioned(
-                  child: Container(
-                    child: Text(_textEditingController.text),
+                  Positioned(
+                    child: Container(
+                      child: Text(_firstText),
+                    ),
+                    height: 32,
+                    width: 110,
+                    left: 64,
+                    top: 32,
                   ),
-                  height: 32,
-                  width: 110,
-                  left: 64,
-                  top: 32,
-                )
-              ],
+                  Positioned(
+                    child: Container(
+                      color: Colors.white,
+                    ),
+                    height: 32,
+                    width: 120,
+                    right: 64,
+                    top: 64,
+                  ),
+                  Positioned(
+                    child: Container(
+                      child: Text(_secondText),
+                    ),
+                    height: 64,
+                    width: 132,
+                    right: 48,
+                    top: 50,
+                  ),
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -92,27 +117,90 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: TextField(
                       controller: _textEditingController,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-
-                      ),
-                      onChanged: (value){
+                          border: OutlineInputBorder(),
+                          suffixIcon: IconButton(
+                            icon: Icon(Icons.clear),
+                            onPressed: () {
+                              setState(() {
+                                _textEditingController.clear();
+                                _firstText = "";
+                              });
+                            },
+                          )),
+                      onChanged: (value) {
                         setState(() {
-                          _textEditingController.text = value;
+                          _firstText = value;
+                        });
+                      },
+                      onSubmitted: (value) {
+                        setState(() {
+                          _firstText = value;
                         });
                       },
                     ),
                   )
                 ],
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text("둘리:"),
+                    flex: 2,
+                  ),
+                  Expanded(
+                    flex: 10,
+                    child: TextField(
+                      controller: _text2EditingController,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          suffixIcon: IconButton(
+                            icon: Icon(Icons.clear),
+                            onPressed: () {
+                              setState(() {
+                                _text2EditingController.clear();
+                                _secondText = "";
+                              });
+                            },
+                          )),
+                      onChanged: (value) {
+                        setState(() {
+                          _secondText = value;
+                        });
+                      },
+                      onSubmitted: (value) {
+                        setState(() {
+                          _secondText = value;
+                        });
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MaterialButton(
+                elevation: 4,
+                onPressed: () {},
+                minWidth: double.infinity,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                color: Theme.of(context).cardColor,
+                height: 48,
+                child: Text(
+                  "저장하기",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
