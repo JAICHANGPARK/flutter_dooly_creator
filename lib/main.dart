@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _text2EditingController = TextEditingController(text: "");
   String _firstText = "";
   String _secondText = "";
-  
+  double _fontSize = 14.0;
 
   void _incrementCounter() {
     setState(() {});
@@ -50,155 +50,259 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       // resizeToAvoidBottomPadding: false,
       // resizeToAvoidBottomInset: false,
+      drawer: Drawer(),
       appBar: AppBar(
         title: Text(
           widget.title,
-          style: TextStyle(),
+        ),
+        actions: [],
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Stack(
+                  children: [
+                    Image.asset("assets/img/welcome.png"),
+                    Positioned(
+                      child: Container(
+                        color: Colors.white,
+                      ),
+                      height: 32,
+                      width: 110,
+                      left: 64,
+                      top: 32,
+                    ),
+                    Positioned(
+                      child: Container(
+                        child: Text(
+                          _firstText,
+                          style: TextStyle(
+                            fontSize: _fontSize,
+                          ),
+                        ),
+                      ),
+                      height: 32,
+                      width: 110,
+                      left: 64,
+                      top: 32,
+                    ),
+                    Positioned(
+                      child: Container(
+                        color: Colors.white,
+                      ),
+                      height: 32,
+                      width: 120,
+                      right: 64,
+                      top: 64,
+                    ),
+                    Positioned(
+                      child: Container(
+                        child: Text(
+                          _secondText,
+                          style: TextStyle(
+                            fontSize: _fontSize,
+                          ),
+                        ),
+                      ),
+                      height: 64,
+                      width: 132,
+                      right: 48,
+                      top: 50,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "도우너:",
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      flex: 3,
+                    ),
+                    Expanded(
+                      flex: 10,
+                      child: TextField(
+                        maxLines: 1,
+                        controller: _textEditingController,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            suffixIcon: IconButton(
+                              icon: Icon(Icons.clear),
+                              onPressed: () {
+                                setState(() {
+                                  _textEditingController.clear();
+                                  _firstText = "";
+                                });
+                              },
+                            )),
+                        onChanged: (value) {
+                          setState(() {
+                            _firstText = value;
+                          });
+                        },
+                        onSubmitted: (value) {
+                          setState(() {
+                            _firstText = value;
+                          });
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "둘리:",
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      flex: 3,
+                    ),
+                    Expanded(
+                      flex: 10,
+                      child: TextField(
+                        maxLines: 1,
+                        controller: _text2EditingController,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            suffixIcon: IconButton(
+                              icon: Icon(Icons.clear),
+                              onPressed: () {
+                                setState(() {
+                                  _text2EditingController.clear();
+                                  _secondText = "";
+                                });
+                              },
+                            )),
+                        onChanged: (value) {
+                          setState(() {
+                            _secondText = value;
+                          });
+                        },
+                        onSubmitted: (value) {
+                          setState(() {
+                            _secondText = value;
+                          });
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "글자크기",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    Spacer(),
+                    ButtonBar(
+                      buttonPadding: EdgeInsets.symmetric(horizontal: 8),
+                      children: [
+                        OutlinedButton(
+                            onPressed: () {
+                              setState(() {
+                                _fontSize = 14.0;
+                              });
+                            },
+                            child: Text(
+                              "초기화",
+                              style: TextStyle(fontSize: 20),
+                            )),
+                        OutlinedButton(
+                            onPressed: () {
+                              setState(() {
+                                _fontSize -= 1.0;
+                              });
+                            },
+                            child: Text(
+                              "작게",
+                              style: TextStyle(fontSize: 20),
+                            )),
+                        OutlinedButton(
+                            onPressed: () {
+                              setState(() {
+                                _fontSize += 1.0;
+                              });
+                            },
+                            child: Text(
+                              "크게",
+                              style: TextStyle(fontSize: 20),
+                            )),
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Stack(
-                children: [
-                  Image.asset("assets/img/welcome.png"),
-                  Positioned(
-                    child: Container(
-                      color: Colors.white,
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          height: 64,
+          child: Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: OutlinedButton(
+                    onPressed: () {
+                      setState(() {
+                        _text2EditingController.clear();
+                        _textEditingController.clear();
+                        _fontSize = 14.0;
+                        _secondText = "";
+                        _firstText = "";
+                      });
+                    },
+
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        "초기화",
+                        style: TextStyle(
+                          fontSize: 18
+                        ),
+                      ),
                     ),
-                    height: 32,
-                    width: 110,
-                    left: 64,
-                    top: 32,
-                  ),
-                  Positioned(
-                    child: Container(
-                      child: Text(_firstText),
-                    ),
-                    height: 32,
-                    width: 110,
-                    left: 64,
-                    top: 32,
-                  ),
-                  Positioned(
-                    child: Container(
-                      color: Colors.white,
-                    ),
-                    height: 32,
-                    width: 120,
-                    right: 64,
-                    top: 64,
-                  ),
-                  Positioned(
-                    child: Container(
-                      child: Text(_secondText),
-                    ),
-                    height: 64,
-                    width: 132,
-                    right: 48,
-                    top: 50,
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text("도우너:"),
-                    flex: 2,
-                  ),
-                  Expanded(
-                    flex: 10,
-                    child: TextField(
-                      controller: _textEditingController,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          suffixIcon: IconButton(
-                            icon: Icon(Icons.clear),
-                            onPressed: () {
-                              setState(() {
-                                _textEditingController.clear();
-                                _firstText = "";
-                              });
-                            },
-                          )),
-                      onChanged: (value) {
-                        setState(() {
-                          _firstText = value;
-                        });
-                      },
-                      onSubmitted: (value) {
-                        setState(() {
-                          _firstText = value;
-                        });
-                      },
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text("둘리:"),
-                    flex: 2,
-                  ),
-                  Expanded(
-                    flex: 10,
-                    child: TextField(
-                      controller: _text2EditingController,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          suffixIcon: IconButton(
-                            icon: Icon(Icons.clear),
-                            onPressed: () {
-                              setState(() {
-                                _text2EditingController.clear();
-                                _secondText = "";
-                              });
-                            },
-                          )),
-                      onChanged: (value) {
-                        setState(() {
-                          _secondText = value;
-                        });
-                      },
-                      onSubmitted: (value) {
-                        setState(() {
-                          _secondText = value;
-                        });
-                      },
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MaterialButton(
-                elevation: 4,
-                onPressed: () {},
-                minWidth: double.infinity,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                color: Theme.of(context).cardColor,
-                height: 48,
-                child: Text(
-                  "저장하기",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-            ),
-          ],
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: MaterialButton(
+                    elevation: 4,
+                    onPressed: () {},
+                    minWidth: double.infinity,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    color: Colors.black,
+                    height: 48,
+                    child: Text(
+                      "저장하기",
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
