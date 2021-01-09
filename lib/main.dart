@@ -9,11 +9,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '둘리짤생성기',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      title: '둘리 짤 생성기',
+      darkTheme: ThemeData.dark(),
+      theme: ThemeData.light().copyWith(
+        primaryColor: Colors.red
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: '둘리 짤 생성기'),
     );
   }
 }
@@ -29,18 +30,28 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  TextEditingController _textEditingController = TextEditingController(text: "");
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
   }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _textEditingController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: TextStyle(),
+        ),
       ),
       body: Center(
         child: Column(
@@ -49,18 +60,32 @@ class _MyHomePageState extends State<MyHomePage> {
             Stack(
               children: [
                 Image.asset("assets/img/welcome.png"),
-                Positioned(child: Container(
-                color: Colors.redAccent,
+                Positioned(
+                  child: Container(
+                    color: Colors.white,
+                  ),
+                  height: 32,
+                  width: 110,
+                  left: 64,
+                  top: 32,
                 ),
-                height: 32,
-                width: 110,
-                left: 64,
+                Positioned(
+                  child: Container(
+                    child: TextField(
+                      controller: _textEditingController,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        
+                      ),
+                    ),
+                  ),
+                  height: 32,
+                  width: 110,
+                  left: 64,
                   top: 32,
                 )
-
               ],
             ),
-
             Text(
               'You have pushed the button this many times:',
             ),
