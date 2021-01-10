@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
 
-
 class HelloDoolyEditorPage extends StatefulWidget {
   HelloDoolyEditorPage({Key key, this.title}) : super(key: key);
 
@@ -57,62 +56,70 @@ class _MyHomePageState extends State<HelloDoolyEditorPage> {
                 padding: const EdgeInsets.all(0),
                 child: RepaintBoundary(
                   key: globalKey,
-                  child: Stack(
-                    children: [
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height / 2,
+                  child: SizedBox(
+                    height: 360,
+                    width: 360,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 0,
+                          bottom: 0,
+                          right: 0,
                           child: Image.asset(
                             "assets/img/welcome.png",
                             fit: BoxFit.fitHeight,
-                          )),
-                      Positioned(
-                        child: Container(
-                          color: Colors.white,
-                        ),
-                        height: 36,
-                        width: 108,
-                        left: 54,
-                        top: 24,
-                      ),
-                      Positioned(
-                        child: Container(
-                          child: Center(
-                            child: Text(
-                              _firstText,
-                              style: TextStyle(fontSize: _fontSize, color: Colors.black, fontWeight: FontWeight.bold),
-                            ),
                           ),
                         ),
-                        height: 36,
-                        width: 108,
-                        left: 54,
-                        top: 24,
-                      ),
-                      Positioned(
-                        child: Container(
-                          color: Colors.white,
+                        Positioned(
+                          child: Container(
+                            color: Colors.white,
+                          ),
+                          height: 38,
+                          width: 92,
+                          left: 72,
+                          top: 20,
                         ),
-                        height: 64,
-                        width: 132,
-                        right: 44,
-                        top: 50,
-                      ),
-                      Positioned(
-                        child: Container(
-                          child: Center(
-                            child: Text(
-                              _secondText,
-                              style:
-                              TextStyle(fontSize: _doolyFontSize, color: Colors.black, fontWeight: FontWeight.bold),
+                        Positioned(
+                          child: Container(
+                            child: Center(
+                              child: Text(
+                                _firstText,
+                                style: TextStyle(fontSize: _fontSize, color: Colors.black, fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ),
+                          height: 38,
+                          width: 92,
+                          left: 72,
+                          top: 20,
                         ),
-                        height: 64,
-                        width: 132,
-                        right: 44,
-                        top: 50,
-                      ),
-                    ],
+                        Positioned(
+                          child: Container(
+                            color: Colors.white,
+                          ),
+                          height: 58,
+                          width: 124,
+                          right: 52,
+                          top: 46,
+                        ),
+                        Positioned(
+                          child: Container(
+                            child: Center(
+                              child: Text(
+                                _secondText,
+                                style: TextStyle(
+                                    fontSize: _doolyFontSize, color: Colors.black, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                          height: 58,
+                          width: 124,
+                          right: 52,
+                          top: 46,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
