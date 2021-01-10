@@ -9,38 +9,67 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return NeumorphicApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Neumorphic App',
-      themeMode: ThemeMode.light,
-      theme: NeumorphicThemeData(
-        baseColor: Color(0xFFFFFFFF),
-        lightSource: LightSource.topLeft,
-        depth: 10,
-      ),
-      darkTheme: NeumorphicThemeData(
-        baseColor: Color(0xFF3E3E3E),
-        lightSource: LightSource.topLeft,
-        depth: 6,
-      ),
-      home: TempPage(),
+    return MaterialApp(
+      title: '둘리 짤 생성기',
+      darkTheme: ThemeData.dark(),
+      theme: ThemeData.light().copyWith(primaryColor: Colors.red[500]),
+      // home: MyHomePage(title: '둘리 짤 생성기'),
+      home: MainPage(),
     );
-    // return MaterialApp(
-    //   title: '둘리 짤 생성기',
-    //   darkTheme: ThemeData.dark(),
-    //   theme: ThemeData.light().copyWith(primaryColor: Colors.red),
-    //   home: MyHomePage(title: '둘리 짤 생성기'),
-    // );
   }
 }
 
-class TempPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  final List<String> listImages = [
+    'assets/img/welcome.png',
+    'assets/img/damage.png',
+    'assets/img/want_bob.png',
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(),
+      drawer: Drawer(),
+      body: SafeArea(
+        child: Center(
+            child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: PageView(
+            physics: BouncingScrollPhysics(),
+            children: [
+              InkWell(
+                child: Image.asset(
+                  listImages[0],
+                  fit: BoxFit.cover,
+                ),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => MyHomePage(
+                            title: "어이 둘리",
+                          )));
+                },
+              ),
+              Image.asset(
+                listImages[1],
+                fit: BoxFit.cover,
+              ),
+              Image.asset(
+                listImages[2],
+                fit: BoxFit.cover,
+              ),
+            ],
+          ),
+        )),
+      ),
+    );
   }
 }
-
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -76,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       // resizeToAvoidBottomPadding: false,
       // resizeToAvoidBottomInset: false,
-      drawer: Drawer(),
+
       appBar: AppBar(
         title: Text(
           widget.title,
@@ -89,62 +118,62 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(0),
                 child: Stack(
                   children: [
-                    Image.asset("assets/img/welcome.png"),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height / 2,
+                        child: Image.asset(
+                          "assets/img/welcome.png",
+                          fit: BoxFit.fitHeight,
+                        )),
                     Positioned(
                       child: Container(
                         color: Colors.white,
                       ),
-                      height: 32,
-                      width: 110,
-                      left: 64,
-                      top: 32,
+                      height: 36,
+                      width: 108,
+                      left: 54,
+                      top: 24,
                     ),
                     Positioned(
                       child: Container(
                         child: Text(
                           _firstText,
-                          style: TextStyle(
-                            fontSize: _fontSize,
-                          ),
+                          style: TextStyle(fontSize: _fontSize, color: Colors.black, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      height: 32,
-                      width: 110,
-                      left: 64,
-                      top: 32,
+                      height: 36,
+                      width: 108,
+                      left: 54,
+                      top: 24,
                     ),
                     Positioned(
                       child: Container(
                         color: Colors.white,
                       ),
-                      height: 32,
-                      width: 120,
-                      right: 64,
-                      top: 64,
+                      height: 64,
+                      width: 132,
+                      right: 44,
+                      top: 50,
                     ),
                     Positioned(
                       child: Container(
                         child: Text(
                           _secondText,
-                          style: TextStyle(
-                            fontSize: _doolyFontSize,
-                          ),
+                          style: TextStyle(fontSize: _doolyFontSize, color: Colors.black, fontWeight: FontWeight.bold),
                         ),
                       ),
                       height: 64,
                       width: 132,
-                      right: 48,
+                      right: 44,
                       top: 50,
                     ),
                   ],
                 ),
               ),
-
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
                 child: Row(
                   children: [
                     Expanded(
@@ -186,16 +215,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
                 child: Row(
                   children: [
                     Text(
                       "글자크기",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                     Spacer(),
                     ButtonBar(
-                      buttonPadding: EdgeInsets.symmetric(horizontal: 8),
                       children: [
                         OutlinedButton(
                             onPressed: () {
@@ -205,7 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             },
                             child: Text(
                               "초기화",
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 16, color: Colors.grey),
                             )),
                         OutlinedButton(
                             onPressed: () {
@@ -215,7 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             },
                             child: Text(
                               "작게",
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 16, color: Colors.grey),
                             )),
                         OutlinedButton(
                             onPressed: () {
@@ -225,7 +253,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             },
                             child: Text(
                               "크게",
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 16, color: Colors.grey),
                             )),
                       ],
                     )
@@ -233,7 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
                 child: Row(
                   children: [
                     Expanded(
@@ -275,16 +303,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
                 child: Row(
                   children: [
                     Text(
                       "글자크기",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                     Spacer(),
                     ButtonBar(
-                      buttonPadding: EdgeInsets.symmetric(horizontal: 8),
                       children: [
                         OutlinedButton(
                             onPressed: () {
@@ -294,7 +321,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             },
                             child: Text(
                               "초기화",
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 16, color: Colors.grey),
                             )),
                         OutlinedButton(
                             onPressed: () {
@@ -304,7 +331,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             },
                             child: Text(
                               "작게",
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 16, color: Colors.grey),
                             )),
                         OutlinedButton(
                             onPressed: () {
@@ -314,14 +341,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             },
                             child: Text(
                               "크게",
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 16, color: Colors.grey),
                             )),
                       ],
                     )
                   ],
                 ),
               ),
-
             ],
           ),
         ),
@@ -349,7 +375,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
                         "전체 초기화",
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 16, color: Colors.red),
                       ),
                     ),
                   ),
@@ -357,7 +383,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: MaterialButton(
                     elevation: 4,
                     onPressed: () {},
@@ -365,11 +391,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    color: Colors.black,
+                    color: Colors.yellow,
                     height: 48,
                     child: Text(
                       "저장하기",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
                     ),
                   ),
                 ),
