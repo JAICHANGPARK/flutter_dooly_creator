@@ -1,5 +1,13 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'dart:ui' as ui;
 
 void main() {
   runApp(MyApp());
@@ -24,45 +32,132 @@ class MainPage extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
+  PageController _pageController;
+
   final List<String> listImages = [
     'assets/img/welcome.png',
     'assets/img/damage.png',
     'assets/img/want_bob.png',
   ];
+  Future getPermission()async{
+    var status = await Permission.storage.status;
+    if (status.isUndetermined) {
+      // We didn't ask for permission yet.
+      await Permission.storage.request();
+    }
+
+// You can can also directly ask the permission about its status.
+    if (await Permission.storage.isRestricted) {
+      // The OS restricts access, for example because of parental controls.
+      await Permission.storage.request();
+    }
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _pageController = PageController(initialPage: 0, viewportFraction: 0.97);
+    getPermission();
+
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      drawer: Drawer(),
+      appBar: AppBar(
+        title: Text("둘리 짤 생성기"),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: Text("둘리 짤 생성기"),
+              decoration: BoxDecoration(color: Colors.green[300]),
+            ),
+            ListTile(
+              title: Text("원작"),
+              subtitle: Text("애기공룡 둘리 @엉덩국"),
+            )
+          ],
+        ),
+      ),
       body: SafeArea(
         child: Center(
             child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: PageView(
-            physics: BouncingScrollPhysics(),
+          padding: const EdgeInsets.all(4.0),
+          child: Column(
             children: [
-              InkWell(
-                child: Image.asset(
-                  listImages[0],
-                  fit: BoxFit.cover,
+              Expanded(
+                flex: 15,
+                child: PageView(
+                  controller: _pageController,
+                  physics: BouncingScrollPhysics(),
+                  children: [
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Image.asset(
+                            listImages[0],
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MyHomePage(
+                                  title: "어이 둘리",
+                                )));
+                      },
+                    ),
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Image.asset(
+                            listImages[1],
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MyHomePage(
+                                  title: "어이 둘리",
+                                )));
+                      },
+                    ),
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Image.asset(
+                            listImages[2],
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MyHomePage(
+                                  title: "어이 둘리",
+                                )));
+                      },
+                    ),
+                  ],
                 ),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => MyHomePage(
-                            title: "어이 둘리",
-                          )));
-                },
               ),
-              Image.asset(
-                listImages[1],
-                fit: BoxFit.cover,
-              ),
-              Image.asset(
-                listImages[2],
-                fit: BoxFit.cover,
-              ),
+              Expanded(
+                child: SmoothPageIndicator(
+                    controller: _pageController,
+                    count: 3,
+                    effect: WormEffect(dotColor: Colors.grey, activeDotColor: Colors.red), // your preferred effect
+                    onDotClicked: (index) {}),
+              )
             ],
           ),
         )),
@@ -87,6 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _secondText = "";
   double _fontSize = 14.0;
   double _doolyFontSize = 14.0;
+  var globalKey = new GlobalKey();
 
   void _incrementCounter() {
     setState(() {});
@@ -121,12 +217,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(0),
                 child: Stack(
                   children: [
-                    SizedBox(
-                        height: MediaQuery.of(context).size.height / 2,
-                        child: Image.asset(
-                          "assets/img/welcome.png",
-                          fit: BoxFit.fitHeight,
-                        )),
+                    RepaintBoundary(
+                      key: globalKey,
+                      child: SizedBox(
+                          height: MediaQuery.of(context).size.height / 2,
+                          child: Image.asset(
+                            "assets/img/welcome.png",
+                            fit: BoxFit.fitHeight,
+                          )),
+                    ),
                     Positioned(
                       child: Container(
                         color: Colors.white,
@@ -138,9 +237,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Positioned(
                       child: Container(
-                        child: Text(
-                          _firstText,
-                          style: TextStyle(fontSize: _fontSize, color: Colors.black, fontWeight: FontWeight.bold),
+                        child: Center(
+                          child: Text(
+                            _firstText,
+                            style: TextStyle(fontSize: _fontSize, color: Colors.black, fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                       height: 36,
@@ -159,9 +260,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Positioned(
                       child: Container(
-                        child: Text(
-                          _secondText,
-                          style: TextStyle(fontSize: _doolyFontSize, color: Colors.black, fontWeight: FontWeight.bold),
+                        child: Center(
+                          child: Text(
+                            _secondText,
+                            style:
+                                TextStyle(fontSize: _doolyFontSize, color: Colors.black, fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                       height: 64,
@@ -386,7 +490,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.all(10.0),
                   child: MaterialButton(
                     elevation: 4,
-                    onPressed: () {},
+                    onPressed: () {
+                      _capture();
+                    },
                     minWidth: double.infinity,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
@@ -405,5 +511,23 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  void _capture() async {
+    print("START CAPTURE");
+    var renderObject = globalKey.currentContext.findRenderObject();
+    if (renderObject is RenderRepaintBoundary) {
+      var boundary = renderObject;
+      ui.Image image = await boundary.toImage();
+      final directory = (await getApplicationDocumentsDirectory()).path;
+      ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      Uint8List pngBytes = byteData.buffer.asUint8List();
+      print(pngBytes);
+      File imgFile = new File('$directory/screenshot.png');
+      imgFile.writeAsBytes(pngBytes);
+      print("FINISH CAPTURE ${imgFile.path}");
+    } else {
+      print("!");
+    }
   }
 }
