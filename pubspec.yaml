@@ -34,6 +34,10 @@ dependencies:
   transparent_image: ^1.0.0
   cached_network_image: ^2.5.0
   flutter_neumorphic: ^3.0.3
+  smooth_page_indicator: ^0.2.0
+  path: any
+  path_provider: any
+  permission_handler: any
 
 dev_dependencies:
   flutter_test:
