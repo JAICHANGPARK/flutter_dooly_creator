@@ -8,6 +8,7 @@
 
     <application
         android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_cricle"
         android:label="flutter_dooly_creator"
         android:requestLegacyExternalStorage="true">
         <activity
