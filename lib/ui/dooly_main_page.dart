@@ -68,7 +68,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
             ),
             ListTile(
               title: Text("버전"),
-              subtitle: Text("1.0.0"),
+              subtitle: Text("1.0.1"),
             )
           ],
         ),
