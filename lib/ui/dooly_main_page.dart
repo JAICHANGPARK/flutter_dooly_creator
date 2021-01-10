@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dooly_creator/ui/app_info_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -59,17 +60,14 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
               decoration: BoxDecoration(color: Colors.green[300]),
             ),
             ListTile(
-              title: Text("원작"),
-              subtitle: Text("애기공룡 둘리 @엉덩국"),
+              title: Text("도움말"),
+              leading: Icon(Icons.info_outline),
+              subtitle: Text("애플리케이션 정보"),
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=> AppInfoPage()));
+              },
             ),
-            ListTile(
-              title: Text("개발"),
-              subtitle: Text("박제창(@Dreamwalker)"),
-            ),
-            ListTile(
-              title: Text("버전"),
-              subtitle: Text("1.0.1"),
-            )
+
           ],
         ),
       ),

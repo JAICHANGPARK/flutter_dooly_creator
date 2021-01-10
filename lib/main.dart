@@ -15,12 +15,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: '둘리 짤 생성기',
       darkTheme: ThemeData.dark(),
       theme: ThemeData.light().copyWith(primaryColor: Colors.red[500]),
-      // home: MyHomePage(title: '둘리 짤 생성기'),
       home: MainPage(),
-      debugShowCheckedModeBanner: false,
+
     );
   }
 }

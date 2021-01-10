@@ -342,10 +342,8 @@ class _MyHomePageState extends State<HelloDoolyEditorPage> {
                   child: MaterialButton(
                     elevation: 4,
                     onPressed: () async {
-                      // _capture();
-                      Uint8List imgData = await getWidgetBytes();
+                      Uint8List imgData = await getWidgetBytes(globalKey);
                       if (imgData != null) {
-                        print(imgData);
                         await showDialog(
                             builder: (context) => AlertDialog(
                                   contentPadding: EdgeInsets.all(8),
@@ -356,7 +354,7 @@ class _MyHomePageState extends State<HelloDoolyEditorPage> {
                                       Image.memory(imgData),
                                       MaterialButton(
                                         onPressed: () async {
-                                          bool result = await _saveFile(imgData);
+                                          bool result = await saveFile(imgData,"hello_dooly");
                                           if (result) Navigator.of(context).pop();
                                         },
                                         child: Row(
@@ -375,7 +373,7 @@ class _MyHomePageState extends State<HelloDoolyEditorPage> {
                                       ),
                                       OutlinedButton(
                                         onPressed: () async {
-                                          _shareImageFile(imgData, "hello_dooly");
+                                          shareImageFile(imgData, "hello_dooly");
                                         },
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
@@ -392,6 +390,8 @@ class _MyHomePageState extends State<HelloDoolyEditorPage> {
                                   ),
                                 ),
                             context: context);
+                      }else{
+                        Fluttertoast.showToast(msg: "Whoops, 문제가 발생했어요. 다시 시도 해주세요");
                       }
                     },
                     minWidth: double.infinity,
@@ -414,7 +414,7 @@ class _MyHomePageState extends State<HelloDoolyEditorPage> {
     );
   }
 
-  Future<Uint8List> getWidgetBytes() async {
+  Future<Uint8List> getWidgetBytes(GlobalKey globalKey) async {
     var renderObject = globalKey.currentContext.findRenderObject();
     if (renderObject is RenderRepaintBoundary) {
       var boundary = renderObject;
@@ -426,10 +426,7 @@ class _MyHomePageState extends State<HelloDoolyEditorPage> {
     return null;
   }
 
-  void _shareImageFile(
-    Uint8List data,
-    String name,
-  ) async {
+  void shareImageFile(Uint8List data, String name) async {
     try {
       await Share.file('둘리짤생성기', '${name}_${DateFormat("hh:mm:ss").format(DateTime.now())}.png', data, 'image/png',
           text: '');
@@ -438,7 +435,7 @@ class _MyHomePageState extends State<HelloDoolyEditorPage> {
     }
   }
 
-  Future<bool> _saveFile(Uint8List data) async {
+  Future<bool> saveFile(Uint8List data, String fileName) async {
     String datetime = DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now());
     final directory = (await getApplicationDocumentsDirectory()).path;
     File imgFile = new File('$directory/screenshot_${datetime}.png');
@@ -449,7 +446,7 @@ class _MyHomePageState extends State<HelloDoolyEditorPage> {
       return false;
     }
     try {
-      final result = await ImageGallerySaver.saveImage(data, quality: 100, name: "dooly_hello_$datetime");
+      final result = await ImageGallerySaver.saveImage(data, quality: 100, name: "${fileName}_$datetime");
       if (result['isSuccess'] == true) {
         Fluttertoast.showToast(msg: "저장 성공");
       } else {
