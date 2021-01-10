@@ -1,9 +1,12 @@
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'ui/dooly_main_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -17,6 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light().copyWith(primaryColor: Colors.red[500]),
       // home: MyHomePage(title: '둘리 짤 생성기'),
       home: MainPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

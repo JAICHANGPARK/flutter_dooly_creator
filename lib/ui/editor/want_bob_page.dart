@@ -7,32 +7,24 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
-class MagicDoolyEditorPage extends StatefulWidget {
-  MagicDoolyEditorPage({Key key, this.title}) : super(key: key);
+class WantBobDoolyEditorPage extends StatefulWidget {
+  WantBobDoolyEditorPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MagicDoolyEditorPageState createState() => _MagicDoolyEditorPageState();
+  _WantBobDoolyEditorPageState createState() => _WantBobDoolyEditorPageState();
 }
 
-class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
+class _WantBobDoolyEditorPageState extends State<WantBobDoolyEditorPage> {
   TextEditingController _textEditingController = TextEditingController(text: "");
-  TextEditingController _text2EditingController = TextEditingController(text: "");
   String _firstText = "";
-  String _secondText = "";
   double _fontSize = 14.0;
-  double _doolyFontSize = 14.0;
   var globalKey = new GlobalKey();
-
-  void _incrementCounter() {
-    setState(() {});
-  }
 
   @override
   void dispose() {
     // TODO: implement dispose
-    _text2EditingController.dispose();
     _textEditingController.dispose();
     super.dispose();
   }
@@ -69,7 +61,7 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
                           bottom: 0,
                           right: 0,
                           child: Image.asset(
-                            "assets/img/damage.png",
+                            "assets/img/want_bob.png",
                             fit: BoxFit.fitHeight,
                           ),
                         ),
@@ -77,9 +69,9 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
                           child: Container(
                             color: Colors.white,
                           ),
-                          height: 60,
-                          width: 160,
-                          left: 72,
+                          height: 70,
+                          width: 100,
+                          left: 24,
                           top: 36,
                         ),
                         Positioned(
@@ -91,9 +83,9 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
                               ),
                             ),
                           ),
-                          height: 60,
-                          width: 160,
-                          left: 72,
+                          height: 70,
+                          width: 100,
+                          left: 24,
                           top: 36,
                         ),
 
@@ -201,11 +193,9 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
                   child: OutlinedButton(
                     onPressed: () {
                       setState(() {
-                        _text2EditingController.clear();
                         _textEditingController.clear();
                         _fontSize = 14.0;
-                        _doolyFontSize = 14.0;
-                        _secondText = "";
+
                         _firstText = "";
                       });
                     },
@@ -259,7 +249,7 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
       ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       Uint8List pngBytes = byteData.buffer.asUint8List();
       print(pngBytes);
-      File imgFile = new File('$directory/magic_dooly_${datetime}.png');
+      File imgFile = new File('$directory/want_dooly_${datetime}.png');
       try {
         imgFile.writeAsBytes(pngBytes);
         print("FINISH CAPTURE ${imgFile.path}");
@@ -268,7 +258,7 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
       }
 
       try {
-        final result = await ImageGallerySaver.saveImage(pngBytes, quality: 100, name: "magic_dooly_$datetime");
+        final result = await ImageGallerySaver.saveImage(pngBytes, quality: 100, name: "want_dooly_$datetime");
         print(result);
       } catch (e) {
         print(e);

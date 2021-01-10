@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'editor/damage_page.dart';
 import 'editor/hello_dooly_page.dart';
+import 'editor/want_bob_page.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -17,26 +19,30 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     'assets/img/damage.png',
     'assets/img/want_bob.png',
   ];
-  Future getPermission()async{
+
+  Future getPermission() async {
     var status = await Permission.storage.status;
+    // await Permission.location.request();
     if (status.isUndetermined) {
       // We didn't ask for permission yet.
       await Permission.storage.request();
+      // await Permission.location.request();
     }
 
 // You can can also directly ask the permission about its status.
     if (await Permission.storage.isRestricted) {
       // The OS restricts access, for example because of parental controls.
       await Permission.storage.request();
+      // await Permission.location.request();
     }
   }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _pageController = PageController(initialPage: 0, viewportFraction: 0.97);
     getPermission();
-
   }
 
   @override
@@ -66,82 +72,82 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       body: SafeArea(
         child: Center(
             child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 15,
-                    child: PageView(
-                      controller: _pageController,
-                      physics: BouncingScrollPhysics(),
-                      children: [
-                        InkWell(
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Card(
-                              elevation: 2,
-                              child: Image.asset(
-                                listImages[0],
-                                fit: BoxFit.fitWidth,
-                              ),
-                            ),
+          padding: const EdgeInsets.all(4.0),
+          child: Column(
+            children: [
+              Expanded(
+                flex: 15,
+                child: PageView(
+                  controller: _pageController,
+                  physics: BouncingScrollPhysics(),
+                  children: [
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Image.asset(
+                            listImages[0],
+                            fit: BoxFit.fitWidth,
                           ),
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HelloDoolyEditorPage(
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => HelloDoolyEditorPage(
                                   title: "어이 둘리",
                                 )));
-                          },
-                        ),
-                        InkWell(
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Card(
-                              elevation: 2,
-                              child: Image.asset(
-                                listImages[1],
-                                fit: BoxFit.fitWidth,
-                              ),
-                            ),
-                          ),
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HelloDoolyEditorPage(
-                                  title: "어이 둘리",
-                                )));
-                          },
-                        ),
-                        InkWell(
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Card(
-                              elevation: 2,
-                              child: Image.asset(
-                                listImages[2],
-                                fit: BoxFit.fitWidth,
-                              ),
-                            ),
-                          ),
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HelloDoolyEditorPage(
-                                  title: "어이 둘리",
-                                )));
-                          },
-                        ),
-                      ],
+                      },
                     ),
-                  ),
-                  Expanded(
-                    child: SmoothPageIndicator(
-                        controller: _pageController,
-                        count: 3,
-                        effect: WormEffect(dotColor: Colors.grey, activeDotColor: Colors.red), // your preferred effect
-                        onDotClicked: (index) {}),
-                  )
-                ],
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Image.asset(
+                            listImages[1],
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MagicDoolyEditorPage(
+                                  title: "초능력 맛 좀 볼래?",
+                                )));
+                      },
+                    ),
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Image.asset(
+                            listImages[2],
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => WantBobDoolyEditorPage(
+                                  title: "밥줘",
+                                )));
+                      },
+                    ),
+                  ],
+                ),
               ),
-            )),
+              Expanded(
+                child: SmoothPageIndicator(
+                    controller: _pageController,
+                    count: 3,
+                    effect: WormEffect(dotColor: Colors.grey, activeDotColor: Colors.red), // your preferred effect
+                    onDotClicked: (index) {}),
+              )
+            ],
+          ),
+        )),
       ),
     );
   }
