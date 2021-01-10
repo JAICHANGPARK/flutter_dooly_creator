@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
@@ -96,13 +97,14 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
                           left: 72,
                           top: 36,
                         ),
-
                       ],
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 24,),
+              SizedBox(
+                height: 24,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Row(
@@ -138,7 +140,6 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
                   ],
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
                 child: Row(
@@ -185,7 +186,6 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
                   ],
                 ),
               ),
-
             ],
           ),
         ),
@@ -270,6 +270,11 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
       try {
         final result = await ImageGallerySaver.saveImage(pngBytes, quality: 100, name: "magic_dooly_$datetime");
         print(result);
+        if (result['isSuccess'] == true) {
+          Fluttertoast.showToast(msg: "저장성공");
+        } else {
+          Fluttertoast.showToast(msg: "저장실패");
+        }
       } catch (e) {
         print(e);
       }

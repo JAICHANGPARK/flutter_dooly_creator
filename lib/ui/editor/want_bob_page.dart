@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
@@ -224,7 +225,7 @@ class _WantBobDoolyEditorPageState extends State<WantBobDoolyEditorPage> {
                     color: Colors.yellow,
                     height: 48,
                     child: Text(
-                      "저장하기",
+                      "완료",
                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
                     ),
                   ),
@@ -259,6 +260,12 @@ class _WantBobDoolyEditorPageState extends State<WantBobDoolyEditorPage> {
 
       try {
         final result = await ImageGallerySaver.saveImage(pngBytes, quality: 100, name: "want_dooly_$datetime");
+        if(result['isSuccess'] == true){
+          Fluttertoast.showToast(msg: "저장성공");
+        }else{
+          Fluttertoast.showToast(msg: "저장실패");
+        }
+        
         print(result);
       } catch (e) {
         print(e);
