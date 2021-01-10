@@ -38,6 +38,8 @@ dependencies:
   path: any
   path_provider: any
   permission_handler: any
+  image_gallery_saver: any
+  intl: any
 
 dev_dependencies:
   flutter_test:

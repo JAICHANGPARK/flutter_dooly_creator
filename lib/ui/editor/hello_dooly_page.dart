@@ -3,6 +3,8 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
 class HelloDoolyEditorPage extends StatefulWidget {
@@ -337,7 +339,7 @@ class _MyHomePageState extends State<HelloDoolyEditorPage> {
                   padding: const EdgeInsets.all(10.0),
                   child: MaterialButton(
                     elevation: 4,
-                    onPressed: () {
+                    onPressed: () async {
                       _capture();
                     },
                     minWidth: double.infinity,
@@ -362,6 +364,7 @@ class _MyHomePageState extends State<HelloDoolyEditorPage> {
 
   void _capture() async {
     print("START CAPTURE");
+    String datetime = DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now());
     var renderObject = globalKey.currentContext.findRenderObject();
     if (renderObject is RenderRepaintBoundary) {
       var boundary = renderObject;
@@ -372,8 +375,19 @@ class _MyHomePageState extends State<HelloDoolyEditorPage> {
       Uint8List pngBytes = byteData.buffer.asUint8List();
       print(pngBytes);
       File imgFile = new File('$directory/screenshot.png');
-      imgFile.writeAsBytes(pngBytes);
-      print("FINISH CAPTURE ${imgFile.path}");
+      try {
+        imgFile.writeAsBytes(pngBytes);
+        print("FINISH CAPTURE ${imgFile.path}");
+      } catch (e) {
+        print(e);
+      }
+
+      try {
+        final result = await ImageGallerySaver.saveImage(pngBytes, quality: 100, name: "dooly_hello_$datetime");
+        print(result);
+      } catch (e) {
+        print(e);
+      }
     } else {
       print("!");
     }
