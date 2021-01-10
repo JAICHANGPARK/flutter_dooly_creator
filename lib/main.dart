@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         lightSource: LightSource.topLeft,
         depth: 6,
       ),
-      home: MyHomePage(),
+      home: TempPage(),
     );
     // return MaterialApp(
     //   title: '둘리 짤 생성기',
@@ -33,6 +33,14 @@ class MyApp extends StatelessWidget {
     // );
   }
 }
+
+class TempPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
