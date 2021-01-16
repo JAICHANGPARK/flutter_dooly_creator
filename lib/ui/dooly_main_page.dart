@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dooly_creator/ui/app_info_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/line_out_page.dart';
+import 'package:flutter_dooly_creator/ui/editor/lol_dooly_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -50,7 +51,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   void initState() {
     // TODO: implement initState
     super.initState();
-    _pageController = PageController(initialPage: 0, viewportFraction: 0.97);
+    _pageController = PageController(initialPage: 0, viewportFraction: 0.9);
     getPermission();
   }
 
@@ -82,11 +83,11 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       body: SafeArea(
         child: Center(
             child: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.fromLTRB(0, 8, 0 ,8 ),
           child: Column(
             children: [
               Expanded(
-                flex: 15,
+                flex: 5,
                 child: PageView(
                   controller: _pageController,
                   physics: BouncingScrollPhysics(),
@@ -95,7 +96,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Card(
-                          elevation: 2,
+                          elevation: 4,
                           child: Image.asset(
                             listImages[0],
                             fit: BoxFit.fitWidth,
@@ -113,7 +114,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Card(
-                          elevation: 2,
+                          elevation: 4,
                           child: Image.asset(
                             listImages[1],
                             fit: BoxFit.fitWidth,
@@ -132,7 +133,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Card(
-                          elevation: 2,
+                          elevation: 4,
                           child: Image.asset(
                             listImages[2],
                             fit: BoxFit.fitWidth,
@@ -150,7 +151,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Card(
-                          elevation: 2,
+                          elevation: 4,
                           child: Image.asset(
                             listImages[3],
                             fit: BoxFit.fitWidth,
@@ -168,7 +169,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Card(
-                          elevation: 2,
+                          elevation: 4,
                           child: Image.asset(
                             listImages[4],
                             fit: BoxFit.fitWidth,
@@ -186,7 +187,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Card(
-                          elevation: 2,
+                          elevation: 4,
                           child: Image.asset(
                             listImages[5],
                             fit: BoxFit.fitWidth,
@@ -195,8 +196,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       ),
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => WantBobDoolyEditorPage(
-                              title: "처신잘하라고",
+                            builder: (context) => LOLDoolyEditorPage(
+                              title: "ㅋㅋㅋㅋ",
                             )));
                       },
                     ),
