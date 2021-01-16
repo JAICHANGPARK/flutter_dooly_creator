@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dooly_creator/ui/app_info_page.dart';
+import 'package:flutter_dooly_creator/ui/editor/line_out_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'editor/becare_well_page.dart';
 import 'editor/damage_page.dart';
 import 'editor/hello_dooly_page.dart';
 import 'editor/want_bob_page.dart';
@@ -19,6 +21,12 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     'assets/img/welcome.png',
     'assets/img/damage.png',
     'assets/img/want_bob.png',
+    'assets/img/becare.png',
+    'assets/img/line.png',
+    'assets/img/lol.png',
+    'assets/img/beam.png',
+    'assets/img/time_cosmos.png',
+
   ];
 
   Future getPermission() async {
@@ -119,6 +127,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 )));
                       },
                     ),
+
                     InkWell(
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
@@ -137,15 +146,107 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 )));
                       },
                     ),
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Image.asset(
+                            listImages[3],
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => BecareWellDoolyEditorPage(
+                              title: "처신잘하라고",
+                            )));
+                      },
+                    ),
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Image.asset(
+                            listImages[4],
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LineOutDoolyEditorPage(
+                              title: "선넘네 ...",
+                            )));
+                      },
+                    ),
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Image.asset(
+                            listImages[5],
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => WantBobDoolyEditorPage(
+                              title: "처신잘하라고",
+                            )));
+                      },
+                    ),
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Image.asset(
+                            listImages[6],
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => WantBobDoolyEditorPage(
+                              title: "처신잘하라고",
+                            )));
+                      },
+                    ),
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Image.asset(
+                            listImages[7],
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => WantBobDoolyEditorPage(
+                              title: "처신잘하라고",
+                            )));
+                      },
+                    ),
                   ],
                 ),
               ),
               Expanded(
                 child: SmoothPageIndicator(
                     controller: _pageController,
-                    count: 3,
+                    count: 8,
                     effect: WormEffect(dotColor: Colors.grey, activeDotColor: Colors.red), // your preferred effect
-                    onDotClicked: (index) {}),
+                    onDotClicked: (index) {
+                      _pageController.animateToPage(index, duration: Duration(milliseconds: 250), curve: Curves.easeIn);
+                    }),
               )
             ],
           ),
