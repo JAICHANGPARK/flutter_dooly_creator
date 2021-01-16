@@ -498,5 +498,5 @@ class _LOLPageState extends State<LOLDoolyEditorPage> {
     }
     return true;
   }
-  
+
 }
