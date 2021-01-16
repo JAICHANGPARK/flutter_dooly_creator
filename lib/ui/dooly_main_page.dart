@@ -29,7 +29,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     'assets/img/lol.png',
     'assets/img/beam.png',
     'assets/img/time_cosmos.png',
-
   ];
 
   Future getPermission() async {
@@ -74,18 +73,17 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
               title: Text("도움말"),
               leading: Icon(Icons.info_outline),
               subtitle: Text("애플리케이션 정보"),
-              onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=> AppInfoPage()));
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => AppInfoPage()));
               },
             ),
-
           ],
         ),
       ),
       body: SafeArea(
         child: Center(
             child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 8, 0 ,8 ),
+          padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
           child: Column(
             children: [
               Expanded(
@@ -130,7 +128,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 )));
                       },
                     ),
-
                     InkWell(
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
@@ -163,8 +160,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => BecareWellDoolyEditorPage(
-                              title: "처신잘하라고",
-                            )));
+                                  title: "처신잘하라고",
+                                )));
                       },
                     ),
                     InkWell(
@@ -181,8 +178,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => LineOutDoolyEditorPage(
-                              title: "선넘네 ...",
-                            )));
+                                  title: "선넘네 ...",
+                                )));
                       },
                     ),
                     InkWell(
@@ -199,8 +196,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => LOLDoolyEditorPage(
-                              title: "ㅋㅋㅋㅋ",
-                            )));
+                                  title: "ㅋㅋㅋㅋ",
+                                )));
                       },
                     ),
                     InkWell(
@@ -217,8 +214,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => BeamDoolyEditorPage(
-                              title: "호잇",
-                            )));
+                                  title: "호잇",
+                                )));
                       },
                     ),
                     InkWell(
@@ -235,8 +232,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => WantBobDoolyEditorPage(
-                              title: "처신잘하라고",
-                            )));
+                                  title: "처신잘하라고",
+                                )));
                       },
                     ),
                   ],
