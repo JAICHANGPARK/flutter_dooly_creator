@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dooly_creator/res/app_string.dart';
 import 'package:flutter_dooly_creator/ui/app_info_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/line_out_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/lol_dooly_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'editor/beam_page.dart';
 import 'editor/becare_well_page.dart';
 import 'editor/damage_page.dart';
 import 'editor/hello_dooly_page.dart';
@@ -59,7 +61,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("둘리 짤 생성기"),
+        title: const Text(APP_TITLE),
       ),
       drawer: Drawer(
         child: ListView(
@@ -214,8 +216,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       ),
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => WantBobDoolyEditorPage(
-                              title: "처신잘하라고",
+                            builder: (context) => BeamDoolyEditorPage(
+                              title: "호잇",
                             )));
                       },
                     ),
