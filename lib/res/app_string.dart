@@ -15,6 +15,8 @@ const String IMG_LOL = "assets/img/lol.png";
 const String IMG_BEAM = "assets/img/beam.png";
 const String IMG_TIME_COSMOS = "assets/img/time_cosmos.png";
 
+const String IMG_APP_ICON = "assets/icon/icon_res_512.png";
+
 const String APP_TITLE = "둘리 짤 만들기";
 
 
