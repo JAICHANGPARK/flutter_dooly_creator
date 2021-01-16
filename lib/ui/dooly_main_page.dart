@@ -3,6 +3,8 @@ import 'package:flutter_dooly_creator/res/app_string.dart';
 import 'package:flutter_dooly_creator/ui/app_info_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/line_out_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/lol_dooly_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -19,6 +21,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
   PageController _pageController;
+  final InAppReview inAppReview = InAppReview.instance;
 
   final List<String> listImages = [
     'assets/img/welcome.png',
@@ -52,7 +55,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   void initState() {
     // TODO: implement initState
     super.initState();
-    _pageController = PageController(initialPage: 0, viewportFraction: 0.9);
+    _pageController = PageController(initialPage: 0, viewportFraction: 0.85);
     getPermission();
   }
 
@@ -65,10 +68,16 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       drawer: Drawer(
         child: ListView(
           children: [
-            DrawerHeader(
-              child: Text("둘리 짤 생성기"),
-              decoration: BoxDecoration(color: Colors.green[300]),
+            SizedBox(height: 24,),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Image.asset(
+                IMG_APP_ICON,
+                height: 120,
+                width: 120,
+              ),
             ),
+            Divider(),
             ListTile(
               title: Text("도움말"),
               leading: Icon(Icons.info_outline),
@@ -77,6 +86,19 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => AppInfoPage()));
               },
             ),
+            Divider(),
+            ListTile(
+              title: Text("평가하기"),
+              leading: Icon(Icons.star_half_outlined),
+              onTap: () async {
+                if (await inAppReview.isAvailable()) {
+                  await inAppReview.openStoreListing();
+                }else{
+                  Fluttertoast.showToast(msg: "현재 이용할 수 없는 상태입니다.");
+                }
+              },
+            ),
+            Divider(),
           ],
         ),
       ),
@@ -86,6 +108,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
           child: Column(
             children: [
+
               Expanded(
                 flex: 5,
                 child: PageView(
@@ -218,31 +241,14 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 )));
                       },
                     ),
-                    InkWell(
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Card(
-                          elevation: 2,
-                          child: Image.asset(
-                            listImages[7],
-                            fit: BoxFit.fitWidth,
-                          ),
-                        ),
-                      ),
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => WantBobDoolyEditorPage(
-                                  title: "처신잘하라고",
-                                )));
-                      },
-                    ),
+
                   ],
                 ),
               ),
               Expanded(
                 child: SmoothPageIndicator(
                     controller: _pageController,
-                    count: 8,
+                    count: 7,
                     effect: WormEffect(dotColor: Colors.grey, activeDotColor: Colors.red), // your preferred effect
                     onDotClicked: (index) {
                       _pageController.animateToPage(index, duration: Duration(milliseconds: 250), curve: Curves.easeIn);
