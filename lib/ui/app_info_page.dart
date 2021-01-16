@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class AppInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,13 +15,22 @@ class AppInfoPage extends StatelessWidget {
               title: Text("원작"),
               subtitle: Text("애기공룡 둘리 @엉덩국"),
             ),
+            Divider(height: 4,),
             ListTile(
-              title: Text("개발"),
-              subtitle: Text("박제창(@Dreamwalker)"),
+              title: Text("개발자"),
+              subtitle: Text("박제창 (@Dreamwalker)"),
             ),
+            Divider(height: 4,),
             ListTile(
               title: Text("버전"),
               subtitle: Text("1.0.2"),
+            ),
+            Divider(height: 4,),
+            ListTile(
+              title: Text("오픈소스라이선스"),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => LicensePage()));
+              },
             )
           ],
         ),
