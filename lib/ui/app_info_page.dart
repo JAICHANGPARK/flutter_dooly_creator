@@ -22,7 +22,7 @@ class AppInfoPage extends StatelessWidget {
             ),
             ListTile(
               title: Text("버전"),
-              subtitle: Text("1.0.1"),
+              subtitle: Text("1.0.2"),
             )
           ],
         ),
