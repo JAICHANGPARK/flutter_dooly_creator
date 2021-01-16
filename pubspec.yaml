@@ -28,6 +28,8 @@ dependencies:
   fluttertoast: ^7.1.6
   esys_flutter_share: ^1.0.2
 
+  in_app_review: ^1.0.4
+
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +43,7 @@ flutter:
 
   assets:
     - assets/img/
+    - assets/icon/
 
   # example:
   # fonts:
