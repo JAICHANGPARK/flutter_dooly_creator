@@ -3,6 +3,7 @@ import 'package:flutter_dooly_creator/res/app_string.dart';
 import 'package:flutter_dooly_creator/ui/app_info_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/line_out_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/lol_dooly_page.dart';
+import 'package:flutter_dooly_creator/ui/editor/time_cosmos_dooly_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -122,7 +123,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                         child: Card(
                           elevation: 4,
                           child: Image.asset(
-                            listImages[0],
+                            IMG_WELCOME,
                             fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -140,7 +141,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                         child: Card(
                           elevation: 4,
                           child: Image.asset(
-                            listImages[1],
+                            IMG_DAMAGE,
                             fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -158,7 +159,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                         child: Card(
                           elevation: 4,
                           child: Image.asset(
-                            listImages[2],
+                            IMG_WANT_BOB,
                             fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -176,7 +177,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                         child: Card(
                           elevation: 4,
                           child: Image.asset(
-                            listImages[3],
+                            IMG_BECARE_WELL,
                             fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -194,7 +195,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                         child: Card(
                           elevation: 4,
                           child: Image.asset(
-                            listImages[4],
+                            IMG_LINE_OUT ,
                             fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -212,7 +213,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                         child: Card(
                           elevation: 4,
                           child: Image.asset(
-                            listImages[5],
+                            IMG_LOL,
                             fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -230,7 +231,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                         child: Card(
                           elevation: 2,
                           child: Image.asset(
-                            listImages[6],
+                            IMG_BEAM,
                             fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -242,13 +243,31 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 )));
                       },
                     ),
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Image.asset(
+                            IMG_EFFECT,
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => TimeCosmosDoolyEditorPage(
+                              title: "성능확실하구만",
+                            )));
+                      },
+                    ),
                   ],
                 ),
               ),
               Expanded(
                 child: SmoothPageIndicator(
                     controller: _pageController,
-                    count: 7,
+                    count: 8,
                     effect: WormEffect(dotColor: Colors.grey, activeDotColor: Colors.red), // your preferred effect
                     onDotClicked: (index) {
                       _pageController.animateToPage(index, duration: Duration(milliseconds: 250), curve: Curves.easeIn);
