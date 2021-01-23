@@ -68,7 +68,9 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       drawer: Drawer(
         child: ListView(
           children: [
-            SizedBox(height: 24,),
+            SizedBox(
+              height: 24,
+            ),
             Align(
               alignment: Alignment.centerLeft,
               child: Image.asset(
@@ -93,7 +95,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
               onTap: () async {
                 if (await inAppReview.isAvailable()) {
                   await inAppReview.openStoreListing();
-                }else{
+                } else {
                   Fluttertoast.showToast(msg: "현재 이용할 수 없는 상태입니다.");
                 }
               },
@@ -108,7 +110,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
           child: Column(
             children: [
-
               Expanded(
                 flex: 5,
                 child: PageView(
@@ -241,7 +242,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 )));
                       },
                     ),
-
                   ],
                 ),
               ),
