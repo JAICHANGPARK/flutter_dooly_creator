@@ -22,8 +22,9 @@ class TimeCosmosDoolyEditorPage extends StatefulWidget {
 class _TimeCosmosDoolyEditorPageState extends State<TimeCosmosDoolyEditorPage> {
   TextEditingController _textEditingController = TextEditingController(text: "");
   String _firstText = "";
-  double _fontSize = 14.0;
+  double _fontSize = 14;
   var globalKey = new GlobalKey();
+  double _opacity = 1.0;
 
   @override
   void dispose() {
@@ -47,10 +48,11 @@ class _TimeCosmosDoolyEditorPageState extends State<TimeCosmosDoolyEditorPage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: 24,),
+              SizedBox(
+                height: 24,
+              ),
               Padding(
                 padding: const EdgeInsets.all(0),
                 child: RepaintBoundary(
@@ -71,35 +73,42 @@ class _TimeCosmosDoolyEditorPageState extends State<TimeCosmosDoolyEditorPage> {
                           ),
                         ),
                         Positioned(
-                          child: Container(
-                            color: Colors.white,
+                          height: 20,
+                          width: 90,
+                          right: 44,
+                          top: 55,
+                          child: Opacity(
+                            opacity: _opacity,
+                            child: Container(
+                              color: Colors.white,
+                            ),
                           ),
-                          height: 38,
-                          width: 70,
-                          left: 44,
-                          top: 62,
                         ),
                         Positioned(
-                          child: Container(
-                            child: Center(
-                              child: Text(
-                                _firstText,
-                                style: TextStyle(fontSize: _fontSize, color: Colors.black, fontWeight: FontWeight.bold),
+                          height: 20,
+                          width: 90,
+                          right: 44,
+                          top: 55,
+                          child: Opacity(
+                            opacity: _opacity,
+                            child: Container(
+                              child: Center(
+                                child: Text(
+                                  _firstText,
+                                  style: TextStyle(fontSize: _fontSize, color: Colors.black, fontWeight: FontWeight.w400),
+                                ),
                               ),
                             ),
                           ),
-                          height: 38,
-                          width: 70,
-                          left: 44,
-                          top: 62,
                         ),
-
                       ],
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 24,),
+              SizedBox(
+                height: 24,
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -143,11 +152,16 @@ class _TimeCosmosDoolyEditorPageState extends State<TimeCosmosDoolyEditorPage> {
                     child: OutlinedButton(
                         onPressed: () {
                           setState(() {
-                            _firstText = "호잇 ~";
+                            if(_opacity >= 1.0){
+                              _opacity = 0.0;
+                            }else{
+                              _opacity = 1.0;
+                            }
+                            // _firstText = "타임코스모스";
                           });
                         },
                         child: Text(
-                          "호잇 ~",
+                          "타임코스모스",
                           style: TextStyle(fontSize: 16, color: Colors.grey),
                         )),
                   ),
@@ -199,8 +213,6 @@ class _TimeCosmosDoolyEditorPageState extends State<TimeCosmosDoolyEditorPage> {
                   ),
                 ],
               )
-
-
             ],
           ),
         ),
@@ -242,51 +254,51 @@ class _TimeCosmosDoolyEditorPageState extends State<TimeCosmosDoolyEditorPage> {
                       if (imgData != null) {
                         await showDialog(
                             builder: (context) => AlertDialog(
-                              contentPadding: EdgeInsets.all(8),
-                              title: Text("결과"),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Image.memory(imgData),
-                                  MaterialButton(
-                                    onPressed: () async {
-                                      bool result = await saveFile(imgData,"line_dooly");
-                                      if (result) Navigator.of(context).pop();
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.save_alt_outlined),
-                                        SizedBox(
-                                          width: 16,
+                                  contentPadding: EdgeInsets.all(8),
+                                  title: Text("결과"),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Image.memory(imgData),
+                                      MaterialButton(
+                                        onPressed: () async {
+                                          bool result = await saveFile(imgData, "time_cosmos_dooly");
+                                          if (result) Navigator.of(context).pop();
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Icon(Icons.save_alt_outlined),
+                                            SizedBox(
+                                              width: 16,
+                                            ),
+                                            Text("저장하기"),
+                                          ],
                                         ),
-                                        Text("저장하기"),
-                                      ],
-                                    ),
-                                    minWidth: double.infinity,
-                                    height: 36,
-                                    color: Colors.green[300],
-                                  ),
-                                  OutlinedButton(
-                                    onPressed: () async {
-                                      shareImageFile(imgData, "line_dooly");
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.share_outlined),
-                                        SizedBox(
-                                          width: 16,
+                                        minWidth: double.infinity,
+                                        height: 36,
+                                        color: Colors.green[300],
+                                      ),
+                                      OutlinedButton(
+                                        onPressed: () async {
+                                          shareImageFile(imgData, "time_cosmos_dooly");
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Icon(Icons.share_outlined),
+                                            SizedBox(
+                                              width: 16,
+                                            ),
+                                            Text("공유하기"),
+                                          ],
                                         ),
-                                        Text("공유하기"),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ),
+                                ),
                             context: context);
-                      }else{
+                      } else {
                         Fluttertoast.showToast(msg: "Whoops, 문제가 발생했어요. 다시 시도 해주세요");
                       }
                     },
@@ -355,5 +367,4 @@ class _TimeCosmosDoolyEditorPageState extends State<TimeCosmosDoolyEditorPage> {
     }
     return true;
   }
-
 }
