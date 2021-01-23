@@ -195,7 +195,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                         child: Card(
                           elevation: 4,
                           child: Image.asset(
-                            IMG_LINE_OUT ,
+                            IMG_LINE_OUT,
                             fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -248,17 +248,35 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                         padding: const EdgeInsets.all(4.0),
                         child: Card(
                           elevation: 2,
-                          child: Image.asset(
-                            IMG_EFFECT,
-                            fit: BoxFit.fitWidth,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                child: Text(
+                                  "성능 확실하구만.",
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                left: 16,
+                                top: 16,
+                              ),
+                              Positioned(
+                                left: 0,
+                                right: 0,
+                                top: 0,
+                                bottom: 0,
+                                child: Image.asset(
+                                  IMG_EFFECT,
+                                  fit: BoxFit.fitWidth,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => TimeCosmosDoolyEditorPage(
-                              title: "성능확실하구만",
-                            )));
+                                  title: "성능 확실하구만",
+                                )));
                       },
                     ),
                   ],
