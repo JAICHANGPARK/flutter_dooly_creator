@@ -249,7 +249,7 @@ class _BeamDoolyEditorPageState extends State<BeamDoolyEditorPage> {
                                   Image.memory(imgData),
                                   MaterialButton(
                                     onPressed: () async {
-                                      bool result = await saveFile(imgData,"line_dooly");
+                                      bool result = await saveFile(imgData,"beam_dooly");
                                       if (result) Navigator.of(context).pop();
                                     },
                                     child: Row(
@@ -268,7 +268,7 @@ class _BeamDoolyEditorPageState extends State<BeamDoolyEditorPage> {
                                   ),
                                   OutlinedButton(
                                     onPressed: () async {
-                                      shareImageFile(imgData, "line_dooly");
+                                      shareImageFile(imgData, "beam_dooly");
                                     },
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
