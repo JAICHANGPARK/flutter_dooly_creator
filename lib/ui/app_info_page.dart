@@ -23,7 +23,7 @@ class AppInfoPage extends StatelessWidget {
             Divider(height: 4,),
             ListTile(
               title: Text("버전"),
-              subtitle: Text("1.0.2"),
+              subtitle: Text("1.1.0"),
             ),
             Divider(height: 4,),
             ListTile(
