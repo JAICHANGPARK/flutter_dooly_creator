@@ -3,9 +3,11 @@ import 'package:flutter_dooly_creator/res/app_string.dart';
 import 'package:flutter_dooly_creator/ui/app_info_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/line_out_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/lol_dooly_page.dart';
+import 'package:flutter_dooly_creator/ui/editor/sorder_gogildong_dooly_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/time_cosmos_dooly_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:in_app_review/in_app_review.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -13,6 +15,7 @@ import 'editor/beam_page.dart';
 import 'editor/becare_well_page.dart';
 import 'editor/damage_page.dart';
 import 'editor/hello_dooly_page.dart';
+import 'editor/ice_star_dooly_page.dart';
 import 'editor/want_bob_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -52,17 +55,41 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     }
   }
 
+  AppUpdateInfo _updateInfo;
+
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
+
+  bool _flexibleUpdateAvailable = false;
+
+  Future<void> checkForUpdate() async {
+    InAppUpdate.checkForUpdate().then((info) {
+      setState(() {
+        _updateInfo = info;
+      });
+    }).catchError((e) {
+      // showSnack(e.toString());
+      showSnack("업데이트 확인에 문제가 발생했다구!");
+    });
+  }
+  void showSnack(String text) {
+    if (_scaffoldKey.currentContext != null) {
+      ScaffoldMessenger.of(_scaffoldKey.currentContext)
+          .showSnackBar(SnackBar(content: Text(text)));
+    }
+  }
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _pageController = PageController(initialPage: 0, viewportFraction: 0.85);
     getPermission();
+    checkForUpdate();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: const Text(APP_TITLE),
       ),
@@ -279,13 +306,86 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 )));
                       },
                     ),
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                child: Text(
+                                  "얼음별",
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                left: 16,
+                                top: 16,
+                              ),
+                              Positioned(
+                                left: 0,
+                                right: 0,
+                                top: 0,
+                                bottom: 0,
+                                child: Image.asset(
+                                  IMG_ICE_STAR,
+                                  fit: BoxFit.fitWidth,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => IceStarDoolyEditorPage(
+                              title: "얼음별에 두고온거 아니었냐구",
+                            )));
+                      },
+                    ),
+                    InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          elevation: 2,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                child: Text(
+                                  "검성 고길동",
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                left: 16,
+                                top: 16,
+                              ),
+                              Positioned(
+                                left: 0,
+                                right: 0,
+                                top: 0,
+                                bottom: 0,
+                                child: Image.asset(
+                                  IMG_SORDER_GOGILDONG,
+                                  fit: BoxFit.fitWidth,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => SorderGogildongDoolyEditorPage(
+                              title: "검성 고길동",
+                            )));
+                      },
+                    ),
+                    
                   ],
                 ),
               ),
               Expanded(
                 child: SmoothPageIndicator(
                     controller: _pageController,
-                    count: 8,
+                    count: 10,
                     effect: WormEffect(dotColor: Colors.grey, activeDotColor: Colors.red), // your preferred effect
                     onDotClicked: (index) {
                       _pageController.animateToPage(index, duration: Duration(milliseconds: 250), curve: Curves.easeIn);
