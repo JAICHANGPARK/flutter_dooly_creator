@@ -75,6 +75,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     if (_scaffoldKey.currentContext != null) {
       ScaffoldMessenger.of(_scaffoldKey.currentContext)
           .showSnackBar(SnackBar(content: Text(text)));
+
+      
     }
   }
   @override
