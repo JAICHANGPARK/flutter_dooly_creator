@@ -11,9 +11,9 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
 class TimeCosmosDoolyEditorPage extends StatefulWidget {
-  TimeCosmosDoolyEditorPage({Key key, this.title}) : super(key: key);
+  TimeCosmosDoolyEditorPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _TimeCosmosDoolyEditorPageState createState() => _TimeCosmosDoolyEditorPageState();
@@ -41,7 +41,7 @@ class _TimeCosmosDoolyEditorPageState extends State<TimeCosmosDoolyEditorPage> {
 
       appBar: AppBar(
         title: Text(
-          widget.title,
+          widget.title!,
         ),
         actions: [],
       ),
@@ -250,7 +250,7 @@ class _TimeCosmosDoolyEditorPageState extends State<TimeCosmosDoolyEditorPage> {
                   child: MaterialButton(
                     elevation: 4,
                     onPressed: () async {
-                      Uint8List imgData = await getWidgetBytes(globalKey);
+                      Uint8List? imgData = await getWidgetBytes(globalKey);
                       if (imgData != null) {
                         await showDialog(
                             builder: (context) => AlertDialog(
@@ -322,13 +322,13 @@ class _TimeCosmosDoolyEditorPageState extends State<TimeCosmosDoolyEditorPage> {
     );
   }
 
-  Future<Uint8List> getWidgetBytes(GlobalKey globalKey) async {
-    var renderObject = globalKey.currentContext.findRenderObject();
+  Future<Uint8List?> getWidgetBytes(GlobalKey globalKey) async {
+    var renderObject = globalKey.currentContext!.findRenderObject();
     if (renderObject is RenderRepaintBoundary) {
       var boundary = renderObject;
       ui.Image image = await boundary.toImage();
-      ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-      Uint8List pngBytes = byteData.buffer.asUint8List();
+      ByteData? byteData = await (image.toByteData(format: ui.ImageByteFormat.png));
+      Uint8List pngBytes = byteData!.buffer.asUint8List();
       return pngBytes;
     }
     return null;

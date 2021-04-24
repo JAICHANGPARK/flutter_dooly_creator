@@ -24,7 +24,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
-  PageController _pageController;
+  PageController? _pageController;
   final InAppReview inAppReview = InAppReview.instance;
 
   final List<String> listImages = [
@@ -41,7 +41,17 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   Future getPermission() async {
     var status = await Permission.storage.status;
     // await Permission.location.request();
-    if (status.isUndetermined) {
+    if (status.isDenied) {
+      // We didn't ask for permission yet.
+      await Permission.storage.request();
+      // await Permission.location.request();
+    }
+    if (status.isPermanentlyDenied) {
+      // We didn't ask for permission yet.
+      await Permission.storage.request();
+      // await Permission.location.request();
+    }
+    if (status.isLimited) {
       // We didn't ask for permission yet.
       await Permission.storage.request();
       // await Permission.location.request();
@@ -55,7 +65,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     }
   }
 
-  AppUpdateInfo _updateInfo;
+  AppUpdateInfo? _updateInfo;
 
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
@@ -73,7 +83,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   }
   void showSnack(String text) {
     if (_scaffoldKey.currentContext != null) {
-      ScaffoldMessenger.of(_scaffoldKey.currentContext)
+      ScaffoldMessenger.of(_scaffoldKey.currentContext!)
           .showSnackBar(SnackBar(content: Text(text)));
 
       
@@ -386,11 +396,11 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
               ),
               Expanded(
                 child: SmoothPageIndicator(
-                    controller: _pageController,
+                    controller: _pageController!,
                     count: 10,
                     effect: WormEffect(dotColor: Colors.grey, activeDotColor: Colors.red), // your preferred effect
                     onDotClicked: (index) {
-                      _pageController.animateToPage(index, duration: Duration(milliseconds: 250), curve: Curves.easeIn);
+                      _pageController!.animateToPage(index, duration: Duration(milliseconds: 250), curve: Curves.easeIn);
                     }),
               )
             ],

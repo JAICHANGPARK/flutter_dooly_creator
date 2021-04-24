@@ -11,9 +11,9 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
 class SorderGogildongDoolyEditorPage extends StatefulWidget {
-  SorderGogildongDoolyEditorPage({Key key, this.title}) : super(key: key);
+  SorderGogildongDoolyEditorPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _SorderGogildongDoolyEditorPageState createState() => _SorderGogildongDoolyEditorPageState();
@@ -46,7 +46,7 @@ class _SorderGogildongDoolyEditorPageState extends State<SorderGogildongDoolyEdi
 
       appBar: AppBar(
         title: Text(
-          widget.title,
+          widget.title!,
         ),
         actions: [],
       ),
@@ -361,7 +361,7 @@ class _SorderGogildongDoolyEditorPageState extends State<SorderGogildongDoolyEdi
                   child: MaterialButton(
                     elevation: 4,
                     onPressed: () async {
-                      Uint8List imgData = await getWidgetBytes(globalKey);
+                      Uint8List? imgData = await getWidgetBytes(globalKey);
                       if (imgData != null) {
                         await showDialog(
                             builder: (context) => AlertDialog(
@@ -435,13 +435,13 @@ class _SorderGogildongDoolyEditorPageState extends State<SorderGogildongDoolyEdi
     );
   }
 
-  Future<Uint8List> getWidgetBytes(GlobalKey globalKey) async {
-    var renderObject = globalKey.currentContext.findRenderObject();
+  Future<Uint8List?> getWidgetBytes(GlobalKey globalKey) async {
+    var renderObject = globalKey.currentContext!.findRenderObject();
     if (renderObject is RenderRepaintBoundary) {
       var boundary = renderObject;
       ui.Image image = await boundary.toImage();
-      ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-      Uint8List pngBytes = byteData.buffer.asUint8List();
+      ByteData? byteData = await (image.toByteData(format: ui.ImageByteFormat.png));
+      Uint8List pngBytes = byteData!.buffer.asUint8List();
       return pngBytes;
     }
     return null;

@@ -10,9 +10,9 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
 class MagicDoolyEditorPage extends StatefulWidget {
-  MagicDoolyEditorPage({Key key, this.title}) : super(key: key);
+  MagicDoolyEditorPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _MagicDoolyEditorPageState createState() => _MagicDoolyEditorPageState();
@@ -47,7 +47,7 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
 
       appBar: AppBar(
         title: Text(
-          widget.title,
+          widget.title!,
         ),
         actions: [],
       ),
@@ -226,7 +226,7 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
                   child: MaterialButton(
                     elevation: 4,
                     onPressed: () async {
-                      Uint8List imgData = await getWidgetBytes(globalKey);
+                      Uint8List? imgData = await getWidgetBytes(globalKey);
                       if (imgData != null) {
                         await showDialog(
                             builder: (context) => AlertDialog(
@@ -298,13 +298,13 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
     );
   }
 
-  Future<Uint8List> getWidgetBytes(GlobalKey globalKey) async {
-    var renderObject = globalKey.currentContext.findRenderObject();
+  Future<Uint8List?> getWidgetBytes(GlobalKey globalKey) async {
+    var renderObject = globalKey.currentContext!.findRenderObject();
     if (renderObject is RenderRepaintBoundary) {
       var boundary = renderObject;
       ui.Image image = await boundary.toImage();
-      ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-      Uint8List pngBytes = byteData.buffer.asUint8List();
+      ByteData? byteData = await (image.toByteData(format: ui.ImageByteFormat.png));
+      Uint8List pngBytes = byteData!.buffer.asUint8List();
       return pngBytes;
     }
     return null;
@@ -347,14 +347,14 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
   void _capture() async {
     print("START CAPTURE");
     String datetime = DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now());
-    var renderObject = globalKey.currentContext.findRenderObject();
+    var renderObject = globalKey.currentContext!.findRenderObject();
     if (renderObject is RenderRepaintBoundary) {
       var boundary = renderObject;
       ui.Image image = await boundary.toImage();
       final directory = (await getApplicationDocumentsDirectory()).path;
       print(directory);
-      ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-      Uint8List pngBytes = byteData.buffer.asUint8List();
+      ByteData? byteData = await (image.toByteData(format: ui.ImageByteFormat.png));
+      Uint8List pngBytes = byteData!.buffer.asUint8List();
       print(pngBytes);
       File imgFile = new File('$directory/magic_dooly_${datetime}.png');
       try {
