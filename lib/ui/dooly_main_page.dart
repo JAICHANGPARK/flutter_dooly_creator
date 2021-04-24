@@ -97,10 +97,230 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     super.dispose();
   }
 
+  Widget imageCardWidget(String imagePath, String cardTitle, VoidCallback onTap) {
+    double imageHeight = 280;
+    double imageOpacity = 0.5;
+    double _borderWidth = 2;
+    return Container(
+      height: imageHeight,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+          color: Colors.black,
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(imageOpacity), BlendMode.darken),
+            image: AssetImage(
+              imagePath,
+            ),
+          )),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              onTap: onTap,
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white, width: _borderWidth),
+                    borderRadius: BorderRadius.circular(36)),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Center(
+                    child: Text(
+                      cardTitle,
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildTwoShotImageListWidget(double imageHeight, double imageOpacity) {
+    double _borderWidth = 2;
+    return ListView(
+      children: [
+        imageCardWidget(
+          IMG_WELCOME,
+          "어이~둘리, 어서오고",
+          () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => HelloDoolyEditorPage(title: "어이 둘리")));
+          },
+        ),
+        imageCardWidget(
+          IMG_LINE_OUT,
+          "선 넘네...",
+          () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => LineOutDoolyEditorPage(
+                      title: "선넘네 ...",
+                    )));
+          },
+        ),
+        imageCardWidget(
+          IMG_EFFECT,
+          "선 넘네...",
+              () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => LineOutDoolyEditorPage(
+                  title: "선넘네 ...",
+                )));
+          },
+        ),
+        Container(
+          height: imageHeight,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              color: Colors.black,
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(Colors.black.withOpacity(imageOpacity), BlendMode.darken),
+                image: AssetImage(
+                  IMG_EFFECT,
+                ),
+              )),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: _borderWidth),
+                      borderRadius: BorderRadius.circular(36)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
+                      child: Text(
+                        "성능 확실하구만",
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Container(
+          height: imageHeight,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              color: Colors.black,
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(Colors.black.withOpacity(imageOpacity), BlendMode.darken),
+                image: AssetImage(
+                  IMG_BEAM,
+                ),
+              )),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: _borderWidth),
+                      borderRadius: BorderRadius.circular(36)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
+                      child: Text(
+                        "호잇",
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Container(
+          height: imageHeight,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              color: Colors.black,
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(Colors.black.withOpacity(imageOpacity), BlendMode.darken),
+                image: AssetImage(
+                  IMG_LOL,
+                ),
+              )),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: _borderWidth),
+                      borderRadius: BorderRadius.circular(36)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
+                      child: Text(
+                        "ㅋㅋㅋㅋ",
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Container(
+          height: imageHeight,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              color: Colors.black,
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(Colors.black.withOpacity(imageOpacity), BlendMode.darken),
+                image: AssetImage(
+                  IMG_ICE_STAR,
+                ),
+              )),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: _borderWidth),
+                      borderRadius: BorderRadius.circular(36)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
+                      child: Text(
+                        "어이어이\n얼음별에 두고온거 아니였냐구",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final double imageHeight = 280.0;
-    final double _imageOpacity = 0.7;
+    final double _imageHeight = 280.0;
+    final double _imageOpacity = 0.5;
     return Scaffold(
       key: _scaffoldKey,
       // appBar: AppBar(
@@ -184,181 +404,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           body: TabBarView(
             controller: _tabController,
             children: [
-              ListView(
-                children: [
-                  Container(
-                    height: imageHeight,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          colorFilter: ColorFilter.mode(Colors.black.withOpacity(_imageOpacity), BlendMode.darken),
-                          image: AssetImage(
-                            IMG_WELCOME,
-                          ),
-                        )),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(36)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Center(
-                                child: Text(
-                                  "어이~둘리, 어서오고",
-                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: imageHeight,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          colorFilter: ColorFilter.mode(Colors.black.withOpacity(_imageOpacity), BlendMode.darken),
-                          image: AssetImage(
-                            IMG_LINE_OUT,
-                          ),
-                        )),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(36)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Center(
-                                child: Text(
-                                  "선 넘네...",
-                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: imageHeight,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          colorFilter: ColorFilter.mode(Colors.black.withOpacity(_imageOpacity), BlendMode.darken),
-                          image: AssetImage(
-                            IMG_EFFECT,
-                          ),
-                        )),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(36)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Center(
-                                child: Text(
-                                  "성능 확실하구만",
-                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: imageHeight,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          colorFilter: ColorFilter.mode(Colors.black.withOpacity(_imageOpacity), BlendMode.darken),
-                          image: AssetImage(
-                            IMG_LOL,
-                          ),
-                        )),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(36)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Center(
-                                child: Text(
-                                  "ㅋㅋㅋㅋ",
-                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: imageHeight,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          colorFilter: ColorFilter.mode(Colors.black.withOpacity(_imageOpacity), BlendMode.darken),
-                          image: AssetImage(
-                            IMG_ICE_STAR,
-                          ),
-                        )),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(36)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Center(
-                                child: Text(
-                                  "어이어이\n얼음별에 두고온거 아니였냐구",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              buildTwoShotImageListWidget(_imageHeight, _imageOpacity),
               Container(),
               Container(),
               Container(),
