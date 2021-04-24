@@ -6,6 +6,7 @@ import 'package:flutter_dooly_creator/ui/editor/line_out_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/lol_dooly_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/sorder_gogildong_dooly_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/time_cosmos_dooly_page.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:in_app_update/in_app_update.dart';
@@ -281,7 +282,19 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
   Widget buildGogilDongImageListWidget() {
     return ListView(
-      children: [],
+      children: [
+        imageCardWidget(
+          IMG_BECARE_WELL,
+          "처신 잘하라고",
+              () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => BecareWellDoolyEditorPage(
+                  title: "처신잘하라고",
+                )));
+          },
+        ),
+
+      ],
     );
   }
 
@@ -354,10 +367,10 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       text: "둘리",
                     ),
                     Tab(
-                      text: "도우너",
+                      text: "고길동",
                     ),
                     Tab(
-                      text: "고길동",
+                      text: "도우너",
                     ),
                   ],
                 ),
@@ -370,7 +383,14 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
               buildTwoShotImageListWidget(),
               buildDoolyImageListWidget(),
               buildGogilDongImageListWidget(),
-              Container(),
+              Container(
+                child: Column(
+                  children: [
+                    SvgPicture.asset("assets/img/undraw_update_uxn2.svg"),
+                    Text("21년 5월 말 업데이트 예정")
+                  ],
+                ),
+              ),
             ],
           ),
         ),
