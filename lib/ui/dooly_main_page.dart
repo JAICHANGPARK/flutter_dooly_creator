@@ -98,9 +98,9 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   }
 
   Widget imageCardWidget(String imagePath, String cardTitle, VoidCallback onTap) {
-    double imageHeight = 280;
-    double imageOpacity = 0.5;
-    double _borderWidth = 2;
+    double imageHeight = 260;
+    double imageOpacity = 0.45;
+    double _borderWidth = 3;
     return Container(
       height: imageHeight,
       width: MediaQuery.of(context).size.width,
@@ -205,14 +205,90 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     );
   }
 
+  Widget buildDoolyImageListWidget() {
+    return ListView(
+      children: [
+        imageCardWidget(
+          IMG_BECARE_WELL,
+          "처신 잘하라고",
+          () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => BecareWellDoolyEditorPage(
+                      title: "처신잘하라고",
+                    )));
+          },
+        ),
+        imageCardWidget(
+          IMG_DAMAGE,
+          "초능력 맛 좀 볼래?",
+          () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => MagicDoolyEditorPage(
+                      title: "초능력 맛 좀 볼래?",
+                    )));
+          },
+        ),
+        imageCardWidget(
+          IMG_WANT_BOB,
+          "밥 줘",
+              () {
+                Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => WantBobDoolyEditorPage(
+                      title: "밥줘",
+                    )));
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget buildDounutImageListWidget() {
+    return ListView(
+      children: [
+        imageCardWidget(
+          IMG_BECARE_WELL,
+          "처신 잘하라고",
+              () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => BecareWellDoolyEditorPage(
+                  title: "처신잘하라고",
+                )));
+          },
+        ),
+        imageCardWidget(
+          IMG_DAMAGE,
+          "초능력 맛 좀 볼래?",
+              () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => MagicDoolyEditorPage(
+                  title: "초능력 맛 좀 볼래?",
+                )));
+          },
+        ),
+        imageCardWidget(
+          IMG_WANT_BOB,
+          "밥 줘",
+              () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => WantBobDoolyEditorPage(
+                  title: "밥줘",
+                )));
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget buildGogilDongImageListWidget() {
+    return ListView(
+      children: [],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       key: _scaffoldKey,
-      // appBar: AppBar(
-      //   title: const Text(APP_TITLE),
-      // ),
       resizeToAvoidBottomInset: false,
       drawer: Drawer(
         child: ListView(
@@ -278,10 +354,10 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       text: "둘리",
                     ),
                     Tab(
-                      text: "고길동",
+                      text: "도우너",
                     ),
                     Tab(
-                      text: "기타",
+                      text: "고길동",
                     ),
                   ],
                 ),
@@ -292,8 +368,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
             controller: _tabController,
             children: [
               buildTwoShotImageListWidget(),
-              Container(),
-              Container(),
+              buildDoolyImageListWidget(),
+              buildGogilDongImageListWidget(),
               Container(),
             ],
           ),
