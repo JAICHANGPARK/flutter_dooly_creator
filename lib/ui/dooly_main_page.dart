@@ -141,8 +141,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     );
   }
 
-  Widget buildTwoShotImageListWidget(double imageHeight, double imageOpacity) {
-    double _borderWidth = 2;
+  Widget buildTwoShotImageListWidget() {
     return ListView(
       children: [
         imageCardWidget(
@@ -164,154 +163,43 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         ),
         imageCardWidget(
           IMG_EFFECT,
-          "선 넘네...",
-              () {
+          "성능 확실하구만.",
+          () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => LineOutDoolyEditorPage(
-                  title: "선넘네 ...",
-                )));
+                builder: (context) => TimeCosmosDoolyEditorPage(
+                      title: "성능 확실하구만",
+                    )));
           },
         ),
-        Container(
-          height: imageHeight,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-              color: Colors.black,
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(Colors.black.withOpacity(imageOpacity), BlendMode.darken),
-                image: AssetImage(
-                  IMG_EFFECT,
-                ),
-              )),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white, width: _borderWidth),
-                      borderRadius: BorderRadius.circular(36)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Center(
-                      child: Text(
-                        "성능 확실하구만",
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+        imageCardWidget(
+          IMG_BEAM,
+          "호잇",
+          () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => BeamDoolyEditorPage(
+                      title: "호잇",
+                    )));
+          },
         ),
-        Container(
-          height: imageHeight,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-              color: Colors.black,
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(Colors.black.withOpacity(imageOpacity), BlendMode.darken),
-                image: AssetImage(
-                  IMG_BEAM,
-                ),
-              )),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white, width: _borderWidth),
-                      borderRadius: BorderRadius.circular(36)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Center(
-                      child: Text(
-                        "호잇",
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+        imageCardWidget(
+          IMG_LOL,
+          "ㅋㅋㅋㅋ",
+          () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => LOLDoolyEditorPage(
+                      title: "ㅋㅋㅋㅋ",
+                    )));
+          },
         ),
-        Container(
-          height: imageHeight,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-              color: Colors.black,
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(Colors.black.withOpacity(imageOpacity), BlendMode.darken),
-                image: AssetImage(
-                  IMG_LOL,
-                ),
-              )),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white, width: _borderWidth),
-                      borderRadius: BorderRadius.circular(36)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Center(
-                      child: Text(
-                        "ㅋㅋㅋㅋ",
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Container(
-          height: imageHeight,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-              color: Colors.black,
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(Colors.black.withOpacity(imageOpacity), BlendMode.darken),
-                image: AssetImage(
-                  IMG_ICE_STAR,
-                ),
-              )),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white, width: _borderWidth),
-                      borderRadius: BorderRadius.circular(36)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Center(
-                      child: Text(
-                        "어이어이\n얼음별에 두고온거 아니였냐구",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+        imageCardWidget(
+          IMG_ICE_STAR,
+          "어이어이\n얼음별에 두고온거 아니였냐구",
+          () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => IceStarDoolyEditorPage(
+                      title: "얼음별에 두고온거 아니었냐구",
+                    )));
+          },
         ),
       ],
     );
@@ -319,8 +207,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    final double _imageHeight = 280.0;
-    final double _imageOpacity = 0.5;
+
     return Scaffold(
       key: _scaffoldKey,
       // appBar: AppBar(
@@ -404,7 +291,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           body: TabBarView(
             controller: _tabController,
             children: [
-              buildTwoShotImageListWidget(_imageHeight, _imageOpacity),
+              buildTwoShotImageListWidget(),
               Container(),
               Container(),
               Container(),
