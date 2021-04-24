@@ -66,10 +66,9 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   }
 
   AppUpdateInfo? _updateInfo;
+  bool _flexibleUpdateAvailable = false;
 
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
-
-  bool _flexibleUpdateAvailable = false;
 
   Future<void> checkForUpdate() async {
     InAppUpdate.checkForUpdate().then((info) {
@@ -85,7 +84,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     if (_scaffoldKey.currentContext != null) {
       ScaffoldMessenger.of(_scaffoldKey.currentContext!)
           .showSnackBar(SnackBar(content: Text(text)));
-
       
     }
   }

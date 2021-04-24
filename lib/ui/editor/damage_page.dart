@@ -368,9 +368,9 @@ class _MagicDoolyEditorPageState extends State<MagicDoolyEditorPage> {
         final result = await ImageGallerySaver.saveImage(pngBytes, quality: 100, name: "magic_dooly_$datetime");
         print(result);
         if (result['isSuccess'] == true) {
-          Fluttertoast.showToast(msg: "저장성공");
+          Fluttertoast.showToast(msg: "저장 성공");
         } else {
-          Fluttertoast.showToast(msg: "저장실패");
+          Fluttertoast.showToast(msg: "저장 실패", backgroundColor: Colors.orange, textColor: Colors.black);
         }
       } catch (e) {
         print(e);
