@@ -10,9 +10,9 @@ FirebaseAnalytics analytics = FirebaseAnalytics();
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  if(!kIsWeb){
+  // if(!kIsWeb){
     Firebase.initializeApp();
-  }
+  // }
 
   runApp(MyApp());
 }
