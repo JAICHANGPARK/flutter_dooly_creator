@@ -27,16 +27,10 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   PageController? _pageController;
   final InAppReview inAppReview = InAppReview.instance;
 
-  final List<String> listImages = [
-    'assets/img/welcome.png',
-    'assets/img/damage.png',
-    'assets/img/want_bob.png',
-    'assets/img/becare.png',
-    'assets/img/line.png',
-    'assets/img/lol.png',
-    'assets/img/beam.png',
-    'assets/img/time_cosmos.png',
-  ];
+  AppUpdateInfo? _updateInfo;
+  bool _flexibleUpdateAvailable = false;
+
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
   Future getPermission() async {
     var status = await Permission.storage.status;
@@ -65,10 +59,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     }
   }
 
-  AppUpdateInfo? _updateInfo;
-  bool _flexibleUpdateAvailable = false;
 
-  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
   Future<void> checkForUpdate() async {
     InAppUpdate.checkForUpdate().then((info) {
@@ -84,7 +75,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     if (_scaffoldKey.currentContext != null) {
       ScaffoldMessenger.of(_scaffoldKey.currentContext!)
           .showSnackBar(SnackBar(content: Text(text)));
-      
+
     }
   }
   @override
