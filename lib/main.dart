@@ -1,12 +1,19 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dooly_creator/res/app_string.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'ui/dooly_main_page.dart';
 
+FirebaseAnalytics analytics = FirebaseAnalytics();
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  if(!kIsWeb){
+    Firebase.initializeApp();
+  }
+
   runApp(MyApp());
 }
 

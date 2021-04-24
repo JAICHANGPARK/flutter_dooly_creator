@@ -284,14 +284,32 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     return ListView(
       children: [
         imageCardWidget(
-          IMG_BECARE_WELL,
-          "처신 잘하라고",
+          IMG_SORDER_GOGILDONG,
+          "검성 고길동",
               () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => BecareWellDoolyEditorPage(
-                  title: "처신잘하라고",
-                )));
+                Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => SorderGogildongDoolyEditorPage(
+                      title: "검성 고길동",
+                    )));
           },
+        ),
+
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: SvgPicture.asset("assets/img/undraw_update_uxn2.svg",
+                width: 240,
+                height: 240,),
+            ),
+            Text("추가 이미지\n21년 5월 말 업데이트 예정",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+              fontSize: 18,
+            ),)
+          ],
         ),
 
       ],
@@ -359,6 +377,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                 bottom: TabBar(
                   controller: _tabController,
                   indicatorColor: Colors.yellow,
+                  indicatorWeight: 4,
                   tabs: [
                     Tab(
                       text: "투샷",
@@ -383,13 +402,20 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
               buildTwoShotImageListWidget(),
               buildDoolyImageListWidget(),
               buildGogilDongImageListWidget(),
-              Container(
-                child: Column(
-                  children: [
-                    SvgPicture.asset("assets/img/undraw_update_uxn2.svg"),
-                    Text("21년 5월 말 업데이트 예정")
-                  ],
-                ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(24.0),
+                    child: SvgPicture.asset("assets/img/undraw_update_uxn2.svg",
+                    width: 240,
+                    height: 240,),
+                  ),
+                  Text("21년 5월 말 업데이트 예정", style: TextStyle(
+                    fontSize: 18,
+                  ),)
+                ],
               ),
             ],
           ),
