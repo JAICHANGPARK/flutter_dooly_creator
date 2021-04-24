@@ -12,7 +12,7 @@ class AppInfoPage extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              title: Text("원작"),
+              title: Text("원화"),
               subtitle: Text("애기공룡 둘리 @엉덩국"),
             ),
             Divider(height: 4,),
@@ -23,7 +23,7 @@ class AppInfoPage extends StatelessWidget {
             Divider(height: 4,),
             ListTile(
               title: Text("버전"),
-              subtitle: Text("1.1.0"),
+              subtitle: Text("1.1.1"),
             ),
             Divider(height: 4,),
             ListTile(

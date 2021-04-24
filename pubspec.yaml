@@ -33,6 +33,8 @@ dependencies:
   in_app_review: ^2.0.2
   in_app_update: ^2.0.0
 
+  package_info: ^2.0.0
+
 
 dev_dependencies:
   flutter_test:
