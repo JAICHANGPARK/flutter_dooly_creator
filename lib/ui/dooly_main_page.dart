@@ -16,6 +16,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'editor/beam_page.dart';
 import 'editor/becare_well_page.dart';
 import 'editor/damage_page.dart';
+import 'editor/dooly/dooly_no_room_page.dart';
 import 'editor/hello_dooly_page.dart';
 import 'editor/ice_star_dooly_page.dart';
 import 'editor/want_bob_page.dart';
@@ -34,30 +35,36 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   ScrollController? _scrollController;
   TabController? _tabController;
 
-  Future getPermission() async {
-    var status = await Permission.storage.status;
-    // await Permission.location.request();
+  Future checkManageStoragePermission() async {
+    var status = await Permission.manageExternalStorage.status;
     if (status.isDenied) {
-      // We didn't ask for permission yet.
-      await Permission.storage.request();
-      // await Permission.location.request();
+      await Permission.manageExternalStorage.request();
     }
     if (status.isPermanentlyDenied) {
-      // We didn't ask for permission yet.
-      await Permission.storage.request();
-      // await Permission.location.request();
+      await Permission.manageExternalStorage.request();
     }
     if (status.isLimited) {
-      // We didn't ask for permission yet.
-      await Permission.storage.request();
-      // await Permission.location.request();
+      await Permission.manageExternalStorage.request();
     }
+    if (status.isRestricted) {
+      await Permission.manageExternalStorage.request();
+    }
+  }
 
-// You can can also directly ask the permission about its status.
-    if (await Permission.storage.isRestricted) {
-      // The OS restricts access, for example because of parental controls.
+  Future getPermission() async {
+    var status = await Permission.storage.status;
+
+    if (status.isDenied) {
       await Permission.storage.request();
-      // await Permission.location.request();
+    }
+    if (status.isPermanentlyDenied) {
+      await Permission.storage.request();
+    }
+    if (status.isLimited) {
+      await Permission.storage.request();
+    }
+    if (await Permission.storage.isRestricted) {
+      await Permission.storage.request();
     }
   }
 
@@ -85,7 +92,9 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     _pageController = PageController(initialPage: 0, viewportFraction: 0.85);
     _scrollController = ScrollController();
     _tabController = TabController(length: 4, vsync: this);
-    getPermission();
+    getPermission().then((value) {
+      checkManageStoragePermission();
+    });
     checkForUpdate();
   }
 
@@ -232,11 +241,21 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         imageCardWidget(
           IMG_WANT_BOB,
           "밥 줘",
-              () {
-                Navigator.of(context).push(MaterialPageRoute(
+          () {
+            Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => WantBobDoolyEditorPage(
                       title: "밥줘",
                     )));
+          },
+        ),
+        imageCardWidget(
+          IMG_DOOLY_NO_ROOM,
+          "군소리말고 밥이나 차려",
+              () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => DoolyNoRoomEditorPage(
+                  title: "군소리말고 밥이나 차려",
+                )));
           },
         ),
       ],
@@ -249,31 +268,31 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         imageCardWidget(
           IMG_BECARE_WELL,
           "처신 잘하라고",
-              () {
+          () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => BecareWellDoolyEditorPage(
-                  title: "처신잘하라고",
-                )));
+                      title: "처신잘하라고",
+                    )));
           },
         ),
         imageCardWidget(
           IMG_DAMAGE,
           "초능력 맛 좀 볼래?",
-              () {
+          () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => MagicDoolyEditorPage(
-                  title: "초능력 맛 좀 볼래?",
-                )));
+                      title: "초능력 맛 좀 볼래?",
+                    )));
           },
         ),
         imageCardWidget(
           IMG_WANT_BOB,
           "밥 줘",
-              () {
+          () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => WantBobDoolyEditorPage(
-                  title: "밥줘",
-                )));
+                      title: "밥줘",
+                    )));
           },
         ),
       ],
@@ -286,32 +305,34 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         imageCardWidget(
           IMG_SORDER_GOGILDONG,
           "검성 고길동",
-              () {
-                Navigator.of(context).push(MaterialPageRoute(
+          () {
+            Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => SorderGogildongDoolyEditorPage(
                       title: "검성 고길동",
                     )));
           },
         ),
-
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(24.0),
-              child: SvgPicture.asset("assets/img/undraw_update_uxn2.svg",
+              child: SvgPicture.asset(
+                "assets/img/undraw_update_uxn2.svg",
                 width: 240,
-                height: 240,),
+                height: 240,
+              ),
             ),
-            Text("추가 이미지\n21년 5월 말 업데이트 예정",
+            Text(
+              "추가 이미지\n21년 5월 말 업데이트 예정",
               textAlign: TextAlign.center,
               style: TextStyle(
-              fontSize: 18,
-            ),)
+                fontSize: 18,
+              ),
+            )
           ],
         ),
-
       ],
     );
   }
@@ -408,13 +429,18 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(24.0),
-                    child: SvgPicture.asset("assets/img/undraw_update_uxn2.svg",
-                    width: 240,
-                    height: 240,),
+                    child: SvgPicture.asset(
+                      "assets/img/undraw_update_uxn2.svg",
+                      width: 240,
+                      height: 240,
+                    ),
                   ),
-                  Text("21년 5월 말 업데이트 예정", style: TextStyle(
-                    fontSize: 18,
-                  ),)
+                  Text(
+                    "21년 5월 말 업데이트 예정",
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  )
                 ],
               ),
             ],
