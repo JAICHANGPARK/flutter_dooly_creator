@@ -92,14 +92,14 @@ class _IceStarDoolyEditorPageState extends State<IceStarDoolyEditorPage> {
                         Positioned(
                           height: 23,
                           width: 60,
-                          left: 120,
-                          top: 50,
+                          right: 65,
+                          top: 28,
                           child: Opacity(
                             opacity: _opacity,
                             child: Container(
                               child: Center(
                                 child: Text(
-                                  _secondText,
+                                  _firstText,
                                   style: TextStyle(fontSize: _fontSize, color: Colors.black, fontWeight: FontWeight.w400),
                                 ),
                               ),
@@ -128,8 +128,10 @@ class _IceStarDoolyEditorPageState extends State<IceStarDoolyEditorPage> {
                             child: Container(
                               child: Center(
                                 child: Text(
-                                  _firstText,
-                                  style: TextStyle(fontSize: _fontSize, color: Colors.black, fontWeight: FontWeight.w400),
+                                  _secondText,
+                                  style: TextStyle(fontSize: _fontSize,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400),
                                 ),
                               ),
                             ),
@@ -150,6 +152,7 @@ class _IceStarDoolyEditorPageState extends State<IceStarDoolyEditorPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Row(
                       children: [
+                        Text("저검은 "),
                         Expanded(
                           flex: 10,
                           child: TextField(
@@ -185,6 +188,7 @@ class _IceStarDoolyEditorPageState extends State<IceStarDoolyEditorPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Row(
                       children: [
+                        Text("얼음별 "),
                         Expanded(
                           flex: 10,
                           child: TextField(
