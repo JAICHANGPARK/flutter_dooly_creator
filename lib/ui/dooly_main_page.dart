@@ -6,6 +6,7 @@ import 'package:flutter_dooly_creator/ui/editor/line_out_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/lol_dooly_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/sorder_gogildong_dooly_page.dart';
 import 'package:flutter_dooly_creator/ui/editor/time_cosmos_dooly_page.dart';
+import 'package:flutter_dooly_creator/utils/permission_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:in_app_review/in_app_review.dart';
@@ -38,39 +39,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   ScrollController? _scrollController;
   TabController? _tabController;
 
-  Future checkManageStoragePermission() async {
-    var status = await Permission.manageExternalStorage.status;
-
-    if (status.isDenied) {
-      await Permission.manageExternalStorage.request();
-    }
-    if (status.isPermanentlyDenied) {
-      await Permission.manageExternalStorage.request();
-    }
-    if (status.isLimited) {
-      await Permission.manageExternalStorage.request();
-    }
-    if (status.isRestricted) {
-      await Permission.manageExternalStorage.request();
-    }
-  }
-
-  Future getPermission() async {
-    var status = await Permission.storage.status;
-
-    if (status.isDenied) {
-      await Permission.storage.request();
-    }
-    if (status.isPermanentlyDenied) {
-      await Permission.storage.request();
-    }
-    if (status.isLimited) {
-      await Permission.storage.request();
-    }
-    if (await Permission.storage.isRestricted) {
-      await Permission.storage.request();
-    }
-  }
 
   Future<void> checkForUpdate() async {
     InAppUpdate.checkForUpdate().then((info) {
