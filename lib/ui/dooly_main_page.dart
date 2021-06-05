@@ -67,7 +67,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     _scrollController = ScrollController();
     _tabController = TabController(length: 4, vsync: this);
     getPermission().then((value) {
-      checkManageStoragePermission();
+      // checkManageStoragePermission();
     });
     checkForUpdate();
   }
