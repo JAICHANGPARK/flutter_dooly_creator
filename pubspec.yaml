@@ -3,8 +3,9 @@ description: A Flutter Image Creator application.
 authors:
   - JAICHANG.PARK <aristojeff@gmail.com>
 homepage: "https://github.com/JAICHANGPARK"
+repository: https://github.com/JAICHANGPARK/flutter_dooly_creator
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.2.0+8
+version: 1.2.1+9
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
