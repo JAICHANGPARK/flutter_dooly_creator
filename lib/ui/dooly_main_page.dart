@@ -18,6 +18,8 @@ import 'editor/beam_page.dart';
 import 'editor/becare_well_page.dart';
 import 'editor/damage_page.dart';
 import 'editor/dooly/dooly_no_room_page.dart';
+import 'editor/dounut/dounut_morning_edit_page.dart';
+import 'editor/dounut/dounut_time_cosmos_edit_page.dart';
 import 'editor/gil_dong/gil_dong_angry_edit_page.dart';
 import 'editor/gil_dong/gil_dong_cough_edit_page.dart';
 import 'editor/gil_dong/gil_dong_want_to_go_home_edit_page.dart';
@@ -238,35 +240,26 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     return ListView(
       children: [
         imageCardWidget(
-          IMG_BECARE_WELL,
-          "처신 잘하라고",
+          IMG_DOUNUT_00,
+          "아침부터 죽상이야",
           () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => BecareWellDoolyEditorPage(
-                      title: "처신잘하라고",
+                builder: (context) => DounutMorningEditorPage(
+                      title: "아침부터 죽상이야",
                     )));
           },
         ),
         imageCardWidget(
-          IMG_DAMAGE,
-          "초능력 맛 좀 볼래?",
+          IMG_DOUNUT_01,
+          "타임코스모스",
           () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => MagicDoolyEditorPage(
-                      title: "초능력 맛 좀 볼래?",
+                builder: (context) => DounutTimeCosmosEditorPage(
+                      title: "타임코스모스",
                     )));
           },
         ),
-        imageCardWidget(
-          IMG_WANT_BOB,
-          "밥 줘",
-          () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => WantBobDoolyEditorPage(
-                      title: "밥줘",
-                    )));
-          },
-        ),
+
       ],
     );
   }
@@ -409,26 +402,27 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
               buildTwoShotImageListWidget(),
               buildDoolyImageListWidget(),
               buildGogilDongImageListWidget(),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(24.0),
-                    child: SvgPicture.asset(
-                      "assets/img/undraw_update_uxn2.svg",
-                      width: 240,
-                      height: 240,
-                    ),
-                  ),
-                  Text(
-                    "21년 5월 말 업데이트 예정",
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  )
-                ],
-              ),
+              buildDounutImageListWidget(),
+              // Column(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     Padding(
+              //       padding: const EdgeInsets.all(24.0),
+              //       child: SvgPicture.asset(
+              //         "assets/img/undraw_update_uxn2.svg",
+              //         width: 240,
+              //         height: 240,
+              //       ),
+              //     ),
+              //     Text(
+              //       "21년 5월 말 업데이트 예정",
+              //       style: TextStyle(
+              //         fontSize: 18,
+              //       ),
+              //     )
+              //   ],
+              // ),
             ],
           ),
         ),
