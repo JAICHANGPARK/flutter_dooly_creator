@@ -17,6 +17,7 @@ import 'editor/beam_page.dart';
 import 'editor/becare_well_page.dart';
 import 'editor/damage_page.dart';
 import 'editor/dooly/dooly_no_room_page.dart';
+import 'editor/gil_dong/gil_dong_angry_edit_page.dart';
 import 'editor/hello_dooly_page.dart';
 import 'editor/ice_star_dooly_page.dart';
 import 'editor/want_bob_page.dart';
@@ -310,6 +311,16 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                 builder: (context) => SorderGogildongDoolyEditorPage(
                       title: "검성 고길동",
                     )));
+          },
+        ),
+        imageCardWidget(
+          IMG_GOGILDONG_ANGRY,
+          "희동이도 있는데!",
+              () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => GilDongAngryEditorPage(
+                  title: "희동이도 있는데!",
+                )));
           },
         ),
         Column(
