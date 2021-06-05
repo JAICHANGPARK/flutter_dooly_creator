@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_dooly_creator/res/app_string.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:intl/intl.dart';
@@ -325,7 +326,7 @@ class _WantBobDoolyEditorPageState extends State<WantBobDoolyEditorPage> {
       if (result['isSuccess'] == true) {
         Fluttertoast.showToast(msg: "저장 성공");
       } else {
-        Fluttertoast.showToast(msg: "저장 실패");
+        Fluttertoast.showToast(msg: "$ERROR_SAVE_IMAGE_FILE");
         return false;
       }
     } catch (e) {

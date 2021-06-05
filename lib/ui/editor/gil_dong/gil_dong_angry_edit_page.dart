@@ -71,8 +71,8 @@ class _GilDongAngryPageState extends State<GilDongAngryEditorPage> {
                 child: RepaintBoundary(
                   key: globalKey,
                   child: SizedBox(
-                    height: 360,
-                    width: 360,
+                    height: 420,
+                    width: 420,
                     child: Stack(
                       children: [
                         Positioned(
@@ -92,10 +92,10 @@ class _GilDongAngryPageState extends State<GilDongAngryEditorPage> {
                               color: Colors.white,
                             ),
                           ),
-                          height: 52,
-                          width: 164,
-                          left: 64,
-                          top: 32,
+                          height: 48,
+                          width: 124,
+                          left: 82,
+                          top: 24,
                         ),
                         Positioned(
                           child: Opacity(
@@ -109,10 +109,10 @@ class _GilDongAngryPageState extends State<GilDongAngryEditorPage> {
                               ),
                             ),
                           ),
-                          height: 52,
-                          width: 164,
-                          left: 64,
-                          top: 32,
+                          height: 48,
+                          width: 124,
+                          left: 82,
+                          top: 24,
                         ),
                         Positioned(
                           child: Opacity(
@@ -121,10 +121,10 @@ class _GilDongAngryPageState extends State<GilDongAngryEditorPage> {
                               color: Colors.white,
                             ),
                           ),
-                          height: 38,
+                          height: 32,
                           width: 92,
-                          right: 72,
-                          top: 92,
+                          right: 98,
+                          top: 52,
                         ),
                         Positioned(
                           child: Opacity(
@@ -139,10 +139,10 @@ class _GilDongAngryPageState extends State<GilDongAngryEditorPage> {
                               ),
                             ),
                           ),
-                          height: 38,
+                          height: 32,
                           width: 92,
-                          right: 72,
-                          top: 92,
+                          right: 98,
+                          top: 52,
                         ),
                       ],
                     ),
@@ -485,7 +485,7 @@ class _GilDongAngryPageState extends State<GilDongAngryEditorPage> {
       if (result['isSuccess'] == true) {
         Fluttertoast.showToast(msg: "저장 성공");
       } else {
-        Fluttertoast.showToast(msg: "저장 실패");
+        Fluttertoast.showToast(msg: "$ERROR_SAVE_IMAGE_FILE");
         return false;
       }
     } catch (e) {

@@ -32,3 +32,5 @@ const String IMG_GOGILDONG_DOOLY_00 = "assets/img/gogildong_dooly_00.png";
 const String IMG_APP_ICON = "assets/icon/icon_res_512.png";
 
 const String APP_TITLE = "둘리 짤 만들기";
+
+const String ERROR_SAVE_IMAGE_FILE = "저장 실패 [앱 권한을 확인해주세요]";

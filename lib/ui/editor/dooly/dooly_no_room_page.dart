@@ -489,7 +489,7 @@ class _DoolyNoRoomPageState extends State<DoolyNoRoomEditorPage> {
       if (result['isSuccess'] == true) {
         Fluttertoast.showToast(msg: "저장 성공");
       } else {
-        Fluttertoast.showToast(msg: "저장 실패");
+        Fluttertoast.showToast(msg: "$ERROR_SAVE_IMAGE_FILE");
         return false;
       }
     } catch (e) {

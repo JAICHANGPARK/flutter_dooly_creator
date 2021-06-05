@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_dooly_creator/res/app_string.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:intl/intl.dart';
@@ -43,7 +44,7 @@ Future<bool> saveFile({Uint8List? data, String fileName = "temp"}) async {
     if (result['isSuccess'] == true) {
       Fluttertoast.showToast(msg: "저장 성공");
     } else {
-      Fluttertoast.showToast(msg: "저장 실패", backgroundColor: Colors.orange, textColor: Colors.black);
+      Fluttertoast.showToast(msg: "$ERROR_SAVE_IMAGE_FILE", backgroundColor: Colors.orange, textColor: Colors.black);
       return false;
     }
   } catch (e) {
@@ -77,7 +78,7 @@ void _capture(GlobalKey key) async {
       if (result['isSuccess'] == true) {
         Fluttertoast.showToast(msg: "저장 성공");
       } else {
-        Fluttertoast.showToast(msg: "저장 실패", backgroundColor: Colors.orange, textColor: Colors.black);
+        Fluttertoast.showToast(msg: "$ERROR_SAVE_IMAGE_FILE", backgroundColor: Colors.orange, textColor: Colors.black);
       }
       print(result);
     } catch (e) {

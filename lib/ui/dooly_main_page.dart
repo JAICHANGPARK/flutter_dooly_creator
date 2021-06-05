@@ -18,6 +18,8 @@ import 'editor/becare_well_page.dart';
 import 'editor/damage_page.dart';
 import 'editor/dooly/dooly_no_room_page.dart';
 import 'editor/gil_dong/gil_dong_angry_edit_page.dart';
+import 'editor/gil_dong/gil_dong_cough_edit_page.dart';
+import 'editor/gil_dong/gil_dong_want_to_go_home_edit_page.dart';
 import 'editor/hello_dooly_page.dart';
 import 'editor/ice_star_dooly_page.dart';
 import 'editor/want_bob_page.dart';
@@ -38,6 +40,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
   Future checkManageStoragePermission() async {
     var status = await Permission.manageExternalStorage.status;
+
     if (status.isDenied) {
       await Permission.manageExternalStorage.request();
     }
@@ -304,15 +307,16 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     return ListView(
       children: [
         imageCardWidget(
-          IMG_SORDER_GOGILDONG,
-          "검성 고길동",
-          () {
+          IMG_GOGILDONG_COUGH,
+          "콜록 이게 무슨냄새야",
+              () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => SorderGogildongDoolyEditorPage(
-                      title: "검성 고길동",
-                    )));
+                builder: (context) => GilDongCoughEditorPage(
+                  title: "콜록 이게 무슨냄새야",
+                )));
           },
         ),
+
         imageCardWidget(
           IMG_GOGILDONG_ANGRY,
           "희동이도 있는데!",
@@ -323,27 +327,30 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                 )));
           },
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: SvgPicture.asset(
-                "assets/img/undraw_update_uxn2.svg",
-                width: 240,
-                height: 240,
-              ),
-            ),
-            Text(
-              "추가 이미지\n21년 5월 말 업데이트 예정",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            )
-          ],
+
+        imageCardWidget(
+          IMG_GOGILDONG_WANT_TO_GO_HOME,
+          "이제 좀 나가주면 안되겠니",
+              () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => GilDongWantGoHomeEditorPage(
+                  title: "이제 좀 나가주면 안되겠니",
+                )));
+          },
         ),
+
+        imageCardWidget(
+          IMG_SORDER_GOGILDONG,
+          "검성 고길동",
+          () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => SorderGogildongDoolyEditorPage(
+                      title: "검성 고길동",
+                    )));
+          },
+        ),
+
+
       ],
     );
   }
