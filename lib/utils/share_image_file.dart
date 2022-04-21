@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'package:esys_flutter_share/esys_flutter_share.dart';
+import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 

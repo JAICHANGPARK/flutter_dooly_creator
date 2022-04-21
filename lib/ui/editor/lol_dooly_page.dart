@@ -1,7 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'package:esys_flutter_share/esys_flutter_share.dart';
+import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_dooly_creator/res/app_string.dart';

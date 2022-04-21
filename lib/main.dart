@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dooly_creator/res/app_string.dart';
 import 'ui/dooly_main_page.dart';
 
-FirebaseAnalytics analytics = FirebaseAnalytics();
+FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: APP_TITLE,
-      darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark().copyWith(primaryColor: Colors.red[500],),
       theme: ThemeData.light().copyWith(primaryColor: Colors.red[500]),
       home: MainPage(),
     );
