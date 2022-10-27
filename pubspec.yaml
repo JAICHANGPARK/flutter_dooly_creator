@@ -5,18 +5,18 @@ authors:
 homepage: "https://github.com/JAICHANGPARK"
 repository: https://github.com/JAICHANGPARK/flutter_dooly_creator
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.2.4+12
+version: 1.2.5+14
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.17.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_svg: any
-  cupertino_icons: ^1.0.4
+  cupertino_icons: ^1.0.5
   transparent_image: ^2.0.0
-  cached_network_image: ^3.2.0
+  cached_network_image: ^3.2.2
 #  flutter_neumorphic: ^3.1.0
   smooth_page_indicator: ^1.0.0+2
   path: any
@@ -24,9 +24,9 @@ dependencies:
   permission_handler: any
   image_gallery_saver: any
   intl: any
-  firebase_core: ^1.14.1
-  firebase_analytics: ^9.1.5
-  fluttertoast: ^8.0.9
+  firebase_core: ^2.1.0
+  firebase_analytics: ^10.0.2
+  fluttertoast: ^8.1.1
   esys_flutter_share_plus: any
   #  esys_flutter_share:
 #    git:

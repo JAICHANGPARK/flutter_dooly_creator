@@ -41,7 +41,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   ScrollController? _scrollController;
   TabController? _tabController;
 
-
   Future<void> checkForUpdate() async {
     InAppUpdate.checkForUpdate().then((info) {
       setState(() {
@@ -89,14 +88,21 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       height: imageHeight,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-          color: Colors.black,
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(Colors.black.withOpacity(imageOpacity), BlendMode.darken),
-            image: AssetImage(
-              imagePath,
-            ),
-          )),
+        color: Colors.black,
+        border: Border.all(
+          color: Colors.black
+        ),
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(imageOpacity),
+            BlendMode.darken,
+          ),
+          image: AssetImage(
+            imagePath,
+          ),
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32),
         child: Column(
@@ -225,11 +231,11 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         imageCardWidget(
           IMG_DOOLY_NO_ROOM,
           "군소리말고 밥이나 차려",
-              () {
+          () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => DoolyNoRoomEditorPage(
-                  title: "군소리말고 밥이나 차려",
-                )));
+                      title: "군소리말고 밥이나 차려",
+                    )));
           },
         ),
       ],
@@ -259,7 +265,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                     )));
           },
         ),
-
       ],
     );
   }
@@ -270,36 +275,33 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         imageCardWidget(
           IMG_GOGILDONG_COUGH,
           "콜록 이게 무슨냄새야",
-              () {
+          () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => GilDongCoughEditorPage(
-                  title: "콜록 이게 무슨냄새야",
-                )));
+                      title: "콜록 이게 무슨냄새야",
+                    )));
           },
         ),
-
         imageCardWidget(
           IMG_GOGILDONG_ANGRY,
           "희동이도 있는데!",
-              () {
+          () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => GilDongAngryEditorPage(
-                  title: "희동이도 있는데!",
-                )));
+                      title: "희동이도 있는데!",
+                    )));
           },
         ),
-
         imageCardWidget(
           IMG_GOGILDONG_WANT_TO_GO_HOME,
           "이제 좀 나가주면 안되겠니",
-              () {
+          () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => GilDongWantGoHomeEditorPage(
-                  title: "이제 좀 나가주면 안되겠니",
-                )));
+                      title: "이제 좀 나가주면 안되겠니",
+                    )));
           },
         ),
-
         imageCardWidget(
           IMG_SORDER_GOGILDONG,
           "검성 고길동",
@@ -310,8 +312,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                     )));
           },
         ),
-
-
       ],
     );
   }
@@ -369,6 +369,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                 title: const Text(APP_TITLE),
                 pinned: true,
                 floating: true,
+                backgroundColor: Colors.red[500],
                 forceElevated: innerBoxIsScrolled,
                 flexibleSpace: FlexibleSpaceBar(
                   collapseMode: CollapseMode.pin,
